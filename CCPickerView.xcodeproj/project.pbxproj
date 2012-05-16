@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		007EE43F15641963000EE6BC /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE43E15641963000EE6BC /* ScrollLayer.m */; };
 		007EE44A15641CAD000EE6BC /* CCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE44915641CAD000EE6BC /* CCPickerView.m */; };
+		007EE44D15642FC8000EE6BC /* bitmapFontTest3.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 007EE44B15642FC8000EE6BC /* bitmapFontTest3.fnt */; };
+		007EE44E15642FC8000EE6BC /* bitmapFontTest3.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE44C15642FC8000EE6BC /* bitmapFontTest3.png */; };
 		00CA0DF11563F7B900F1E32D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF01563F7B900F1E32D /* QuartzCore.framework */; };
 		00CA0DF31563F7B900F1E32D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF21563F7B900F1E32D /* OpenGLES.framework */; };
 		00CA0DF51563F7B900F1E32D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF41563F7B900F1E32D /* OpenAL.framework */; };
@@ -131,6 +133,8 @@
 		007EE43E15641963000EE6BC /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		007EE44815641CAD000EE6BC /* CCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPickerView.h; sourceTree = SOURCE_ROOT; };
 		007EE44915641CAD000EE6BC /* CCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPickerView.m; sourceTree = SOURCE_ROOT; };
+		007EE44B15642FC8000EE6BC /* bitmapFontTest3.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bitmapFontTest3.fnt; sourceTree = "<group>"; };
+		007EE44C15642FC8000EE6BC /* bitmapFontTest3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bitmapFontTest3.png; sourceTree = "<group>"; };
 		00CA0DEC1563F7B900F1E32D /* CCPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CA0DF01563F7B900F1E32D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CA0DF21563F7B900F1E32D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -433,6 +437,8 @@
 				00CA0F5B1563F7BA00F1E32D /* GameConfig.h */,
 				007EE43D15641963000EE6BC /* ScrollLayer.h */,
 				007EE43E15641963000EE6BC /* ScrollLayer.m */,
+				007EE44B15642FC8000EE6BC /* bitmapFontTest3.fnt */,
+				007EE44C15642FC8000EE6BC /* bitmapFontTest3.png */,
 				00CA0E011563F7B900F1E32D /* Resources */,
 				00CA0E151563F7B900F1E32D /* libs */,
 				00CA0F4E1563F7BA00F1E32D /* Supporting Files */,
@@ -828,6 +834,8 @@
 				00CA0E0F1563F7B900F1E32D /* Icon.png in Resources */,
 				00CA0E111563F7B900F1E32D /* Icon@2x.png in Resources */,
 				00CA0E141563F7B900F1E32D /* iTunesArtwork in Resources */,
+				007EE44D15642FC8000EE6BC /* bitmapFontTest3.fnt in Resources */,
+				007EE44E15642FC8000EE6BC /* bitmapFontTest3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,51 +51,15 @@
         self.scrollLayer = [ScrollLayer node];
 		self.scrollLayer.contentSize = CGSizeMake(50, 50);
 		self.scrollLayer.position = ccp( size.width /2 , size.height/2 );
-        //		self.scrollLayer.pageSize = 5;
-		NSMutableArray* array = [NSMutableArray arrayWithCapacity:0];
-		CCSprite* temp;
-		temp = [CCSprite node];
-		temp.color = ccYELLOW;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
+		NSMutableArray* array = [NSMutableArray arrayWithCapacity:10];
         
-		temp = [CCSprite node];
-		temp.color = ccBLUE;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
-        
-		temp = [CCSprite node];
-		temp.color = ccWHITE;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
-        
-		temp = [CCSprite node];
-		temp.color = ccRED;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
-        
-		temp = [CCSprite node];
-		temp.color = ccGREEN;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
-        
-        temp = [CCSprite node];
-		temp.color = ccMAGENTA;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
-        
-        temp = [CCSprite node];
-		temp.color = ccORANGE;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
-        
-        temp = [CCSprite node];
-		temp.color = ccGRAY;
-		temp.textureRect = CGRectMake(0, 0, 50, 50);
-		[array addObject:temp];
+        for (int i = 0; i < 10; i++) {
+            CCLabelBMFont *labl = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"%d", i] fntFile:@"bitmapFontTest3.fnt"];
+            [array addObject:labl];
+        }
         
 		scrollLayer.arrayPages = array;
-		scrollLayer.pageSize = 8;
+		scrollLayer.pageSize = [array count]-1;
 		scrollLayer.currentPage = 2;
 		[scrollLayer makePages];
 		[self addChild:self.scrollLayer];
