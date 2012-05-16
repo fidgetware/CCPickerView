@@ -17,6 +17,8 @@
 	CGPoint touchStartedPoint;
 	CGPoint touchStartedWorldPosition;
 	BOOL isTouching;
+    BOOL didMove;
+    CGRect rect;    
 }
 @property (nonatomic, assign) int pageSize;
 @property (nonatomic, assign) int currentPage;
