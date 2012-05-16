@@ -9,11 +9,14 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
+#import "ScrollLayer.h"
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
+    ScrollLayer *scrollLayer;
 }
+@property (nonatomic, retain) ScrollLayer* scrollLayer;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
