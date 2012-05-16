@@ -11,6 +11,7 @@
 		007EE44A15641CAD000EE6BC /* CCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE44915641CAD000EE6BC /* CCPickerView.m */; };
 		007EE44D15642FC8000EE6BC /* bitmapFontTest3.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 007EE44B15642FC8000EE6BC /* bitmapFontTest3.fnt */; };
 		007EE44E15642FC8000EE6BC /* bitmapFontTest3.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE44C15642FC8000EE6BC /* bitmapFontTest3.png */; };
+		007EE45115643B7E000EE6BC /* Scale9Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE45015643B7E000EE6BC /* Scale9Sprite.m */; };
 		00CA0DF11563F7B900F1E32D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF01563F7B900F1E32D /* QuartzCore.framework */; };
 		00CA0DF31563F7B900F1E32D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF21563F7B900F1E32D /* OpenGLES.framework */; };
 		00CA0DF51563F7B900F1E32D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF41563F7B900F1E32D /* OpenAL.framework */; };
@@ -135,6 +136,8 @@
 		007EE44915641CAD000EE6BC /* CCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPickerView.m; sourceTree = SOURCE_ROOT; };
 		007EE44B15642FC8000EE6BC /* bitmapFontTest3.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bitmapFontTest3.fnt; sourceTree = "<group>"; };
 		007EE44C15642FC8000EE6BC /* bitmapFontTest3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bitmapFontTest3.png; sourceTree = "<group>"; };
+		007EE44F15643B7E000EE6BC /* Scale9Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale9Sprite.h; sourceTree = "<group>"; };
+		007EE45015643B7E000EE6BC /* Scale9Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale9Sprite.m; sourceTree = "<group>"; };
 		00CA0DEC1563F7B900F1E32D /* CCPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CA0DF01563F7B900F1E32D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CA0DF21563F7B900F1E32D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -428,6 +431,8 @@
 			children = (
 				00CA0F521563F7BA00F1E32D /* AppDelegate.h */,
 				00CA0F531563F7BA00F1E32D /* AppDelegate.m */,
+				007EE44F15643B7E000EE6BC /* Scale9Sprite.h */,
+				007EE45015643B7E000EE6BC /* Scale9Sprite.m */,
 				007EE44815641CAD000EE6BC /* CCPickerView.h */,
 				007EE44915641CAD000EE6BC /* CCPickerView.m */,
 				00CA0F551563F7BA00F1E32D /* RootViewController.h */,
@@ -946,6 +951,7 @@
 				00CA0F5A1563F7BA00F1E32D /* HelloWorldLayer.m in Sources */,
 				007EE43F15641963000EE6BC /* ScrollLayer.m in Sources */,
 				007EE44A15641CAD000EE6BC /* CCPickerView.m in Sources */,
+				007EE45115643B7E000EE6BC /* Scale9Sprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
