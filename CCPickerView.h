@@ -14,14 +14,14 @@
 @interface CCPickerView : CCLayer {
     id <CCPickerViewDataSource> dataSource;
     id <CCPickerViewDelegate> delegate;
-    NSMutableArray *pickers;
+    NSMutableArray *scrollLayers;
     CGFloat width;
     CGFloat height;
     CGRect rect;
 }
 @property (nonatomic, assign) id <CCPickerViewDataSource> dataSource;
 @property (nonatomic, assign) id <CCPickerViewDelegate> delegate;
-@property (nonatomic, retain) NSMutableArray *pickers;
+@property (nonatomic, retain) NSMutableArray *scrollLayers;
 
 @property(nonatomic, readonly) NSInteger numberOfComponents;
 @property(nonatomic) BOOL showsSelectionIndicator;
@@ -33,6 +33,7 @@
 - (NSInteger)selectedRowInComponent:(NSInteger)component;
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
 - (CCNode *)nodeForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (void)loadData;
 @end
 
 @protocol CCPickerViewDataSource
@@ -44,6 +45,6 @@
 - (CGFloat)pickerView:(CCPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
 - (CGFloat)pickerView:(CCPickerView *)pickerView widthForComponent:(NSInteger)component;
 - (NSString *)pickerView:(CCPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-- (UIView *)pickerView:(CCPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingNode:(CCNode *)view;
+- (CCNode *)pickerView:(CCPickerView *)pickerView nodeForRow:(NSInteger)row forComponent:(NSInteger)component reusingNode:(CCNode *)node;
 - (void)pickerView:(CCPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 @end
