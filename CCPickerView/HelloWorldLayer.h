@@ -9,14 +9,14 @@
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
-#import "ScrollLayer.h"
+#import "CCPickerView.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer
+@interface HelloWorldLayer : CCLayer <CCPickerViewDataSource, CCPickerViewDelegate>
 {
-    ScrollLayer *scrollLayer;
+    CCPickerView *pickerView;
 }
-@property (nonatomic, retain) ScrollLayer* scrollLayer;
+@property (nonatomic, retain) CCPickerView *pickerView;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
