@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		007EE43F15641963000EE6BC /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE43E15641963000EE6BC /* ScrollLayer.m */; };
 		00CA0DF11563F7B900F1E32D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF01563F7B900F1E32D /* QuartzCore.framework */; };
 		00CA0DF31563F7B900F1E32D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF21563F7B900F1E32D /* OpenGLES.framework */; };
 		00CA0DF51563F7B900F1E32D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF41563F7B900F1E32D /* OpenAL.framework */; };
@@ -125,6 +126,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		007EE43D15641963000EE6BC /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
+		007EE43E15641963000EE6BC /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		00CA0DEC1563F7B900F1E32D /* CCPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CA0DF01563F7B900F1E32D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CA0DF21563F7B900F1E32D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -423,6 +426,8 @@
 				00CA0F581563F7BA00F1E32D /* HelloWorldLayer.h */,
 				00CA0F591563F7BA00F1E32D /* HelloWorldLayer.m */,
 				00CA0F5B1563F7BA00F1E32D /* GameConfig.h */,
+				007EE43D15641963000EE6BC /* ScrollLayer.h */,
+				007EE43E15641963000EE6BC /* ScrollLayer.m */,
 				00CA0E011563F7B900F1E32D /* Resources */,
 				00CA0E151563F7B900F1E32D /* libs */,
 				00CA0F4E1563F7BA00F1E32D /* Supporting Files */,
@@ -926,6 +931,7 @@
 				00CA0F541563F7BA00F1E32D /* AppDelegate.m in Sources */,
 				00CA0F571563F7BA00F1E32D /* RootViewController.m in Sources */,
 				00CA0F5A1563F7BA00F1E32D /* HelloWorldLayer.m in Sources */,
+				007EE43F15641963000EE6BC /* ScrollLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1025,7 @@
 				00CA0F601563F7BA00F1E32D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
