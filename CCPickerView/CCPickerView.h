@@ -15,8 +15,6 @@
     id <CCPickerViewDataSource> dataSource;
     id <CCPickerViewDelegate> delegate;
     NSMutableArray *scrollLayers;
-    CGFloat width;
-    CGFloat height;
     CGRect rect;
 }
 @property (nonatomic, assign) id <CCPickerViewDataSource> dataSource;
@@ -47,4 +45,6 @@
 - (NSString *)pickerView:(CCPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 - (CCNode *)pickerView:(CCPickerView *)pickerView nodeForRow:(NSInteger)row forComponent:(NSInteger)component reusingNode:(CCNode *)node;
 - (void)pickerView:(CCPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+- (CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView;
+- (CGSize)sizeOfPickerView:(CCPickerView *)pickerView; 
 @end

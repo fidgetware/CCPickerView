@@ -47,14 +47,13 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: label];
-                
+        
         self.pickerView = [CCPickerView node];
         pickerView.position = ccp(size.width/2 ,size.height/2);
         pickerView.delegate = self;
         pickerView.dataSource = self;
         
         [pickerView loadData];
-        pickerView.contentSize = CGSizeMake(50, 50);
 		[self addChild:self.pickerView];        
 	}
 	return self;
@@ -107,7 +106,7 @@
 - (CGFloat)pickerView:(CCPickerView *)pickerView widthForComponent:(NSInteger)component {
     CCLabelBMFont *label = [CCLabelBMFont labelWithString:@"8" fntFile:@"bitmapFontTest3.fnt"];
     
-    return label.contentSize.width*3;
+    return label.contentSize.width*2;
 }
 
 - (NSString *)pickerView:(CCPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -122,6 +121,16 @@
 
 - (void)pickerView:(CCPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
+}
+
+-(CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView {
+    return 10;
+}
+
+-(CGSize)sizeOfPickerView:(CCPickerView *)pickerView {
+    CGSize size = CGSizeMake(120, 100);
+    
+    return size;
 }
 
 @end

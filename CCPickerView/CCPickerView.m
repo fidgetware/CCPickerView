@@ -26,38 +26,34 @@
 
 -(void)loadData {
 
-    NSInteger numComponents = [dataSource numberOfComponentsInPickerView:self];    
-    NSInteger componentsWidth = 0;
-    NSInteger spacer = 0;
+    NSInteger numComponents = [dataSource numberOfComponentsInPickerView:self];
+    CGFloat componentsWidth = 0;
     NSInteger pickerStart = 0;
+    CGSize size = [delegate sizeOfPickerView:self];
+    CGFloat spacing = [delegate spaceBetweenComponents:self];
     
-    // find out how wide the components will be side by side.
-    for (int c = 0; c < numComponents; c++) {
-        componentsWidth += [delegate pickerView:self widthForComponent:c];
+    CCLayer *blueLayer = [CCLayerColor layerWithColor:(ccColor4B){0,15,217,255} width:size.width height:size.height];
+	blueLayer.position = ccp(-size.width/2, -size.height/2);    
+	[self addChild:blueLayer];
+    
+    for (int i = 0; i < numComponents; i++) {
+        componentsWidth += [delegate pickerView:self widthForComponent:i];
     }
     
-    // If no width has been specified make it as wide as the width of the components;
-    if (width == 0) {
-        width = componentsWidth;
-    }
-
-    // If no height has been specified make it 3 rows high;
-    if (height == 0) {
-        height = [delegate pickerView:self rowHeightForComponent:0]*3;
-    }
+    componentsWidth += (numComponents-1)*spacing;
     
-    self.contentSize = CGSizeMake(width, height);
+    self.contentSize = size;
     
     if (!scrollLayers) {
         scrollLayers = [[NSMutableArray alloc] initWithCapacity:numComponents];
         
-        pickerStart = -width/2;
+        pickerStart = -componentsWidth/2;
         for (int c = 0; c < numComponents; c++) {
             ScrollLayer *scrollLayer = [ScrollLayer node];
-            scrollLayer.contentSize = CGSizeMake([delegate pickerView:self widthForComponent:c], [delegate pickerView:self rowHeightForComponent:0]);
-            pickerStart += scrollLayer.contentSize.width/2 + spacer;
-            scrollLayer.position = ccp(pickerStart , 0);
-            pickerStart += scrollLayer.contentSize.width/2;
+            CGSize componentSize = CGSizeMake([delegate pickerView:self widthForComponent:c], [delegate pickerView:self rowHeightForComponent:c]);
+            scrollLayer.contentSize = componentSize;
+            scrollLayer.position = ccp(pickerStart+componentSize.width/2, 0);
+            pickerStart += componentSize.width + spacing;
             
             NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
             NSInteger pageSize = [dataSource pickerView:self numberOfRowsInComponent:c];
@@ -75,7 +71,7 @@
         }
     }
     
-    rect = CGRectMake(self.position.x - width/2, self.position.y - height/2, width, height);        
+    rect = CGRectMake(self.position.x - size.width/2, self.position.y - size.height/2, size.width, size.height);        
 }
 
 - (NSInteger)numberOfRowsInComponent:(NSInteger)component {
