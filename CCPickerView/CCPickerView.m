@@ -15,7 +15,6 @@
 @synthesize delegate;
 @synthesize scrollLayers;
 @synthesize numberOfComponents;
-@synthesize showsSelectionIndicator;
 
 -(id) init {
 	if ((self=[super init])) {
@@ -30,6 +29,12 @@
     NSInteger pickerStart = 0;
     CGSize size = [delegate sizeOfPickerView:self];
     CGFloat spacing = [delegate spaceBetweenComponents:self];
+
+    CCSprite* background;
+    background = [CCSprite node];
+    background.color = ccWHITE;
+    background.textureRect = CGRectMake(0, 0, size.width-spacing, size.height-spacing);
+    [self addChild:background];
     
     for (int i = 0; i < numComponents; i++) {
         componentsWidth += [delegate pickerView:self widthForComponent:i];

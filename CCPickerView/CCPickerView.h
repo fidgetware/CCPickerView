@@ -22,7 +22,6 @@
 @property (nonatomic, retain) NSMutableArray *scrollLayers;
 
 @property(nonatomic, readonly) NSInteger numberOfComponents;
-@property(nonatomic) BOOL showsSelectionIndicator;
 
 - (NSInteger)numberOfRowsInComponent:(NSInteger)component;
 - (void)reloadAllComponents;
