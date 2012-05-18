@@ -119,9 +119,9 @@
 }
 
 - (NSInteger)selectedRowInComponent:(NSInteger)component {
-    NSLog(@"Not implemented %@", _cmd);
+    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
     
-    return -1;
+    return scrollLayer.currentPage;
 }
 
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
