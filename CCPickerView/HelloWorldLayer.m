@@ -14,6 +14,9 @@
 @implementation HelloWorldLayer
 @synthesize pickerView;
 
+#define kComponentWidth 54
+#define kComponentHeight 30
+
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -97,16 +100,12 @@
 }
 
 #pragma mark - CCPickerViewDelegate
-- (CGFloat)pickerView:(CCPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    CCLabelBMFont *label = [CCLabelBMFont labelWithString:@"8" fntFile:@"bitmapFontTest3.fnt"];
-    
-    return label.contentSize.height;    
+- (CGFloat)pickerView:(CCPickerView *)pickerView rowHeightForComponent:(NSInteger)component {    
+    return kComponentHeight;
 }
 
 - (CGFloat)pickerView:(CCPickerView *)pickerView widthForComponent:(NSInteger)component {
-    CCLabelBMFont *label = [CCLabelBMFont labelWithString:@"8" fntFile:@"bitmapFontTest3.fnt"];
-    
-    return label.contentSize.width*2;
+    return kComponentWidth;
 }
 
 - (NSString *)pickerView:(CCPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -114,23 +113,36 @@
 }
 
 - (CCNode *)pickerView:(CCPickerView *)pickerView nodeForRow:(NSInteger)row forComponent:(NSInteger)component reusingNode:(CCNode *)node {
+    
+    CCSprite *temp = [CCSprite node];
+    temp.color = ccYELLOW;
+    temp.textureRect = CGRectMake(0, 0, kComponentWidth, kComponentHeight);
+    
     NSString *rowString = [NSString stringWithFormat:@"%d", row];
     CCLabelBMFont *label = [CCLabelBMFont labelWithString:rowString fntFile:@"bitmapFontTest3.fnt"];
-    return label;
+    label.position = ccp(kComponentWidth/2, kComponentHeight/2);
+    [temp addChild:label];
+    
+    return temp;
 }
 
 - (void)pickerView:(CCPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
 }
 
--(CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView {
+- (CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView {
     return 10;
 }
 
--(CGSize)sizeOfPickerView:(CCPickerView *)pickerView {
-    CGSize size = CGSizeMake(120, 100);
+- (CGSize)sizeOfPickerView:(CCPickerView *)pickerView {
+    CGSize size = CGSizeMake(200, 100);
     
     return size;
+}
+
+- (CCNode *)overlayImage:(CCPickerView *)pickerView {
+    CCSprite *sprite = [CCSprite spriteWithFile:@"slots.png"];
+    return sprite;
 }
 
 @end

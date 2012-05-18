@@ -25,16 +25,11 @@
 }
 
 -(void)loadData {
-
     NSInteger numComponents = [dataSource numberOfComponentsInPickerView:self];
     CGFloat componentsWidth = 0;
     NSInteger pickerStart = 0;
     CGSize size = [delegate sizeOfPickerView:self];
     CGFloat spacing = [delegate spaceBetweenComponents:self];
-    
-    CCLayer *blueLayer = [CCLayerColor layerWithColor:(ccColor4B){0,15,217,255} width:size.width height:size.height];
-	blueLayer.position = ccp(-size.width/2, -size.height/2);    
-	[self addChild:blueLayer];
     
     for (int i = 0; i < numComponents; i++) {
         componentsWidth += [delegate pickerView:self widthForComponent:i];
@@ -64,12 +59,16 @@
             scrollLayer.arrayPages = array;
             scrollLayer.pageSize = pageSize-1;
             [scrollLayer setCurrentPage:0];
+            scrollLayer.touchSize = CGSizeMake(componentSize.width, self.contentSize.height);
             [scrollLayer makePages];
             
             [self addChild:scrollLayer];            
             [scrollLayers addObject:scrollLayer];
         }
     }
+
+    CCNode *overlayImage = [delegate overlayImage:self];
+    [self addChild:overlayImage];
     
     rect = CGRectMake(self.position.x - size.width/2, self.position.y - size.height/2, size.width, size.height);        
 }

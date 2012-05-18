@@ -19,6 +19,8 @@
 @synthesize pageSize;
 @synthesize arrayPages;
 @synthesize world;
+@synthesize touchSize;
+
 -(id) init {
 	if ((self=[super init])) {
 		self.isTouchEnabled = YES;
@@ -45,23 +47,21 @@
 //	CCLOG(@"[%f][%f]",s.width,s.height);
 //	CCLOG(@"anchorpoint[%f][%f]",self.anchorPoint.x,self.anchorPoint.y);
 	self.world = [CCLayer node];
-	world.contentSize = CGSizeMake(s.width, s.height * pageSize);
+	world.contentSize = CGSizeMake(s.width, s.height);
 	for (int i=0; i < [arrayPages count]; i++) {
 		CCNode* n = [arrayPages objectAtIndex:i];
 		n.position = ccp(s.width / 2, s.height / 2 + i * s.height);
 		[world addChild:n];
 	}
 	//world.anchorPoint = ccp(0,0);
-	world.position = ccp(-s.width /2, -s.height/2 -s.height * currentPage);
+	world.position = ccp(-s.width/2, -s.height/2 -s.height * currentPage);
 	[self addChild:world];
-	
-    rect = CGRectMake(self.position.x - s.width/2, self.position.y - s.height/2*3, s.width, s.height*3);
 }
 
 - (BOOL)containsTouchLocation:(UITouch *)touch
 {
 	CGPoint p = [self convertTouchToNodeSpaceAR:touch];
-	CGRect r = CGRectMake(-self.contentSize.width, -self.contentSize.height / 2*3, self.contentSize.width, self.contentSize.height*3);
+	CGRect r = CGRectMake(-touchSize.width, -self.contentSize.height/2 - touchSize.height/2, touchSize.width, touchSize.height);
 	return CGRectContainsPoint(r, p);
 }
 
@@ -84,13 +84,13 @@
 }
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
 	CGPoint n = [self convertTouchToNodeSpaceAR:touch];    
-    int pagesToMove = round((n.y - touchStartedPoint.y) / 50.0);
+    int pagesToMove = round((n.y - touchStartedPoint.y) / touchSize.height);
     
     if (!didMove) {
-        if (n.y < -50/2) {
+        if (n.y < -self.contentSize.height) {
             pagesToMove = 1;
         }
-        if (n.y > 50/2) {
+        if (n.y > 0) {
             pagesToMove = -1;
         }
     }

@@ -14,16 +14,16 @@
 	int currentPage;
 	NSMutableArray* arrayPages;
 	CCLayer* world;
+    CGSize touchSize;
 	CGPoint touchStartedPoint;
 	CGPoint touchStartedWorldPosition;
 	BOOL isTouching;
     BOOL didMove;
-    CGRect rect;    
 }
 @property (nonatomic, assign) int pageSize;
 @property (nonatomic, assign) int currentPage;
 @property (nonatomic, retain) NSMutableArray* arrayPages;
-
+@property (nonatomic, assign) CGSize touchSize;
 -(void)makePages;
 
 @end

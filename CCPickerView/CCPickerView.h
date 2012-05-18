@@ -47,4 +47,5 @@
 - (void)pickerView:(CCPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 - (CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView;
 - (CGSize)sizeOfPickerView:(CCPickerView *)pickerView; 
+- (CCNode *)overlayImage:(CCPickerView *)pickerView;
 @end
