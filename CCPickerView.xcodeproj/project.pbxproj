@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		007EE43F15641963000EE6BC /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE43E15641963000EE6BC /* ScrollLayer.m */; };
-		007EE45115643B7E000EE6BC /* Scale9Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE45015643B7E000EE6BC /* Scale9Sprite.m */; };
 		007EE5CB156467EA000EE6BC /* CCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE5C8156467EA000EE6BC /* CCPickerView.m */; };
 		007EE5D115659C5B000EE6BC /* 3slots.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5CF15659C5B000EE6BC /* 3slots.png */; };
 		007EE5D7156698D3000EE6BC /* 3slots-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5D6156698D3000EE6BC /* 3slots-hd.png */; };
@@ -136,8 +135,6 @@
 /* Begin PBXFileReference section */
 		007EE43D15641963000EE6BC /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		007EE43E15641963000EE6BC /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
-		007EE44F15643B7E000EE6BC /* Scale9Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale9Sprite.h; sourceTree = "<group>"; };
-		007EE45015643B7E000EE6BC /* Scale9Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale9Sprite.m; sourceTree = "<group>"; };
 		007EE5C7156467E9000EE6BC /* CCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPickerView.h; sourceTree = "<group>"; };
 		007EE5C8156467EA000EE6BC /* CCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPickerView.m; sourceTree = "<group>"; };
 		007EE5CF15659C5B000EE6BC /* 3slots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3slots.png; sourceTree = "<group>"; };
@@ -441,8 +438,6 @@
 				007EE5C8156467EA000EE6BC /* CCPickerView.m */,
 				00CA0F521563F7BA00F1E32D /* AppDelegate.h */,
 				00CA0F531563F7BA00F1E32D /* AppDelegate.m */,
-				007EE44F15643B7E000EE6BC /* Scale9Sprite.h */,
-				007EE45015643B7E000EE6BC /* Scale9Sprite.m */,
 				00CA0F551563F7BA00F1E32D /* RootViewController.h */,
 				00CA0F561563F7BA00F1E32D /* RootViewController.m */,
 				00CA0F581563F7BA00F1E32D /* HelloWorldLayer.h */,
@@ -966,7 +961,6 @@
 				00CA0F571563F7BA00F1E32D /* RootViewController.m in Sources */,
 				00CA0F5A1563F7BA00F1E32D /* HelloWorldLayer.m in Sources */,
 				007EE43F15641963000EE6BC /* ScrollLayer.m in Sources */,
-				007EE45115643B7E000EE6BC /* Scale9Sprite.m in Sources */,
 				007EE5CB156467EA000EE6BC /* CCPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
