@@ -54,11 +54,10 @@
         
         self.pickerView = [CCPickerView node];
         pickerView.position = ccp(size.width/2 ,size.height/2);
-        pickerView.delegate = self;
         pickerView.dataSource = self;
+        pickerView.delegate = self;
         
 		[self addChild:self.pickerView];        
-        [pickerView reloadAllComponents];
 	}
 	return self;
 }

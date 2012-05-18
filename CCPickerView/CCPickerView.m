@@ -21,12 +21,10 @@
 	return self;
 }
 
--(void)setDelegate:(id<CCPickerViewDelegate>)newDelegate {
-    delegate = newDelegate;
-    
+-(void)initialLoad {
     CGSize size = [delegate sizeOfPickerView:self];
     CGFloat spacing = [delegate spaceBetweenComponents:self];
-
+    
     self.contentSize = size;
     
     CCSprite* background;
@@ -41,6 +39,22 @@
     rect = CGRectMake(self.position.x - size.width/2, self.position.y - size.height/2, size.width, size.height);
     
     [self reloadAllComponents];    
+}
+
+-(void)setDelegate:(id<CCPickerViewDelegate>)newDelegate {
+    delegate = newDelegate;
+    
+    if (dataSource != nil) {
+        [self initialLoad];
+    }
+}
+
+-(void)setDataSource:(id<CCPickerViewDataSource>)newDataSource {
+    dataSource = newDataSource;
+    
+    if (delegate != nil) {
+        [self initialLoad];
+    }
 }
 
 - (NSInteger)numberOfRowsInComponent:(NSInteger)component {
