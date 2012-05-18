@@ -8,12 +8,10 @@
 
 #import "CCPickerView.h"
 #import "ScrollLayer.h"
-#import "Scale9Sprite.h"
 
 @implementation CCPickerView
 @synthesize dataSource;
 @synthesize delegate;
-@synthesize scrollLayers;
 @synthesize numberOfComponents;
 
 -(id) init {
@@ -23,79 +21,87 @@
 	return self;
 }
 
--(void)loadData {
-    NSInteger numComponents = [dataSource numberOfComponentsInPickerView:self];
-    CGFloat componentsWidth = 0;
-    NSInteger pickerStart = 0;
+-(void)setDelegate:(id<CCPickerViewDelegate>)newDelegate {
+    delegate = newDelegate;
+    
     CGSize size = [delegate sizeOfPickerView:self];
     CGFloat spacing = [delegate spaceBetweenComponents:self];
 
+    self.contentSize = size;
+    
     CCSprite* background;
     background = [CCSprite node];
     background.color = ccWHITE;
     background.textureRect = CGRectMake(0, 0, size.width-spacing, size.height-spacing);
     [self addChild:background];
     
-    for (int i = 0; i < numComponents; i++) {
-        componentsWidth += [delegate pickerView:self widthForComponent:i];
-    }
-    
-    componentsWidth += (numComponents-1)*spacing;
-    
-    self.contentSize = size;
-    
-    if (!scrollLayers) {
-        scrollLayers = [[NSMutableArray alloc] initWithCapacity:numComponents];
-        
-        pickerStart = -componentsWidth/2;
-        for (int c = 0; c < numComponents; c++) {
-            ScrollLayer *scrollLayer = [ScrollLayer node];
-            CGSize componentSize = CGSizeMake([delegate pickerView:self widthForComponent:c], [delegate pickerView:self rowHeightForComponent:c]);
-            scrollLayer.contentSize = componentSize;
-            scrollLayer.position = ccp(pickerStart+componentSize.width/2, 0);
-            pickerStart += componentSize.width + spacing;
-            
-            NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
-            NSInteger pageSize = [dataSource pickerView:self numberOfRowsInComponent:c];
-                        
-            for (int p = 0; p < pageSize; p++) {
-                [array addObject:[delegate pickerView:self nodeForRow:p forComponent:c reusingNode:nil]];
-            }
-            scrollLayer.arrayPages = array;
-            scrollLayer.pageSize = pageSize-1;
-            [scrollLayer setCurrentPage:0];
-            scrollLayer.touchSize = CGSizeMake(componentSize.width, self.contentSize.height);
-            [scrollLayer makePages];
-            
-            [self addChild:scrollLayer];            
-            [scrollLayers addObject:scrollLayer];
-        }
-    }
-
     CCNode *overlayImage = [delegate overlayImage:self];
-    [self addChild:overlayImage];
+    [self addChild:overlayImage z:10];
     
-    rect = CGRectMake(self.position.x - size.width/2, self.position.y - size.height/2, size.width, size.height);        
+    rect = CGRectMake(self.position.x - size.width/2, self.position.y - size.height/2, size.width, size.height);
+    
+    [self reloadAllComponents];    
 }
 
 - (NSInteger)numberOfRowsInComponent:(NSInteger)component {
-    ScrollLayer *scrollLayer = [scrollLayers objectAtIndex:component];
+    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
     
     return [scrollLayer.arrayPages count];
 }
 
 - (void)reloadAllComponents {
-    NSLog(@"Not implemented %@", _cmd);    
+    for (int c = 0; c < [dataSource numberOfComponentsInPickerView:self]; c++) {
+        [self reloadComponent:c];
+    }
 }
 
 - (void)reloadComponent:(NSInteger)component {
-    NSLog(@"Not implemented %@", _cmd);
+    NSInteger numComponents = [dataSource numberOfComponentsInPickerView:self];
+    CGFloat componentsWidth = 0;
+    NSInteger pickerStart = 0;
+    CGFloat spacing = [delegate spaceBetweenComponents:self];
+
+    [self removeChildByTag:component cleanup:YES];
+    
+    ScrollLayer *scrollLayer = [ScrollLayer node];
+    
+    for (int i = 0; i < numComponents; i++) {
+        componentsWidth += [delegate pickerView:self widthForComponent:i];
+    }
+    
+    componentsWidth += (numComponents-1)*spacing;
+
+    pickerStart = -componentsWidth/2;
+    for (int c = 0; c < component; c++) {
+        CGSize componentSize = CGSizeMake([delegate pickerView:self widthForComponent:c], [delegate pickerView:self rowHeightForComponent:c]);
+        pickerStart += componentSize.width + spacing;
+    }
+
+    CGSize componentSize = CGSizeMake([delegate pickerView:self widthForComponent:component], [delegate pickerView:self rowHeightForComponent:component]);
+
+    scrollLayer.contentSize = componentSize;
+    scrollLayer.position = ccp(pickerStart+componentSize.width/2, 0);
+        
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
+    NSInteger pageSize = [dataSource pickerView:self numberOfRowsInComponent:component];
+        
+    for (int p = 0; p < pageSize; p++) {
+        [array addObject:[delegate pickerView:self nodeForRow:p forComponent:component reusingNode:nil]];
+    }
+    
+    scrollLayer.arrayPages = array;
+    scrollLayer.pageSize = pageSize-1;
+    [scrollLayer setCurrentPage:0];
+    scrollLayer.touchSize = CGSizeMake(componentSize.width, self.contentSize.height);
+    [scrollLayer makePages];
+        
+    [self addChild:scrollLayer z:0 tag:component];
 }
 
 - (CGSize)rowSizeForComponent:(NSInteger)component {
-    NSLog(@"Not implemented %@", _cmd);
+    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
     
-    return CGSizeMake(0, 0);
+    return scrollLayer.contentSize;
 }
 
 - (NSInteger)selectedRowInComponent:(NSInteger)component {
@@ -105,14 +111,14 @@
 }
 
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated {
-    ScrollLayer *scrollLayer = [scrollLayers objectAtIndex:component];
+    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
     [scrollLayer setCurrentPage:row];    
 }
 
 - (CCNode *)nodeForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSLog(@"Not implemented %@", _cmd);
+    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
     
-    return nil;
+    return [scrollLayer getChildByTag:row];
 }
 
 //http://www.cocos2d-iphone.org/forum/topic/10270

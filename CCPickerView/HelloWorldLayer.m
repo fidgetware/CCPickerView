@@ -57,8 +57,8 @@
         pickerView.delegate = self;
         pickerView.dataSource = self;
         
-        [pickerView loadData];
 		[self addChild:self.pickerView];        
+        [pickerView reloadAllComponents];
 	}
 	return self;
 }

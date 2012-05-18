@@ -14,12 +14,10 @@
 @interface CCPickerView : CCLayer {
     id <CCPickerViewDataSource> dataSource;
     id <CCPickerViewDelegate> delegate;
-    NSMutableArray *scrollLayers;
     CGRect rect;
 }
 @property (nonatomic, assign) id <CCPickerViewDataSource> dataSource;
 @property (nonatomic, assign) id <CCPickerViewDelegate> delegate;
-@property (nonatomic, retain) NSMutableArray *scrollLayers;
 
 @property(nonatomic, readonly) NSInteger numberOfComponents;
 
@@ -30,7 +28,6 @@
 - (NSInteger)selectedRowInComponent:(NSInteger)component;
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
 - (CCNode *)nodeForRow:(NSInteger)row forComponent:(NSInteger)component;
-- (void)loadData;
 @end
 
 @protocol CCPickerViewDataSource
