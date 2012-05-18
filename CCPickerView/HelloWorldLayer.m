@@ -15,7 +15,8 @@
 @synthesize pickerView;
 
 #define kComponentWidth 54
-#define kComponentHeight 30
+#define kComponentHeight 32
+#define kComponentSpacing 10
 
 +(CCScene *) scene
 {
@@ -115,12 +116,12 @@
 - (CCNode *)pickerView:(CCPickerView *)pickerView nodeForRow:(NSInteger)row forComponent:(NSInteger)component reusingNode:(CCNode *)node {
     
     CCSprite *temp = [CCSprite node];
-    temp.color = ccYELLOW;
+    temp.color = ccWHITE;
     temp.textureRect = CGRectMake(0, 0, kComponentWidth, kComponentHeight);
     
     NSString *rowString = [NSString stringWithFormat:@"%d", row];
-    CCLabelBMFont *label = [CCLabelBMFont labelWithString:rowString fntFile:@"bitmapFontTest3.fnt"];
-    label.position = ccp(kComponentWidth/2, kComponentHeight/2);
+    CCLabelBMFont *label = [CCLabelBMFont labelWithString:rowString fntFile:@"bitmapFont.fnt"];
+    label.position = ccp(kComponentWidth/2, kComponentHeight/2-5);
     [temp addChild:label];
     
     return temp;
@@ -131,7 +132,7 @@
 }
 
 - (CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView {
-    return 10;
+    return kComponentSpacing;
 }
 
 - (CGSize)sizeOfPickerView:(CCPickerView *)pickerView {
@@ -141,7 +142,7 @@
 }
 
 - (CCNode *)overlayImage:(CCPickerView *)pickerView {
-    CCSprite *sprite = [CCSprite spriteWithFile:@"slots.png"];
+    CCSprite *sprite = [CCSprite spriteWithFile:@"3slots.png"];
     return sprite;
 }
 
