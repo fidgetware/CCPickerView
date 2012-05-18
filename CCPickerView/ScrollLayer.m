@@ -79,12 +79,12 @@
     didMove = YES;
 	CGPoint n = [self convertTouchToNodeSpaceAR:touch];
 	world.position = ccp(touchStartedWorldPosition.x, touchStartedWorldPosition.y + n.y - touchStartedPoint.y);
-    NSLog(@"moved");
-	
+    CCLOG(@"moved %f %f", world.position.x, world.position.y);
 }
+
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
 	CGPoint n = [self convertTouchToNodeSpaceAR:touch];    
-    int pagesToMove = round((n.y - touchStartedPoint.y) / touchSize.height);
+    int pagesToMove = round((n.y - touchStartedPoint.y) / self.contentSize.height);
     
     if (!didMove) {
         if (n.y < -self.contentSize.height) {
@@ -98,6 +98,7 @@
     
     self.currentPage = self.currentPage - pagesToMove;
 	isTouching = NO;
+    CCLOG(@"ended %f %f", world.position.x, world.position.y);    
 }
 
 - (void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event {
