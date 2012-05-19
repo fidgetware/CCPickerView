@@ -5,6 +5,11 @@
 //  Created by Tomohisa Takaoka on 11/9/10.
 //  Copyright 2010 Systom. All rights reserved.
 //
+// https://github.com/tomohisa/scrollmenu
+//
+// Modifed by Mick Lester on 5/19/2012
+// Copyright (c) 2012 fidgetware. All rights reserved.
+//
 
 #import "ScrollLayer.h"
 
@@ -125,6 +130,7 @@
 	}
 	
 }
+
 - (void) moveToPagePosition {
 	CGPoint positionNow = world.position;
 	CGSize s = self.contentSize;
@@ -137,4 +143,22 @@
 	}
 	
 }
+
+-(void)spin {
+    currentPage = [arrayPages count]-1;
+
+    CGPoint positionNow = world.position;
+	CGSize s = self.contentSize;
+	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * currentPage) );
+    //	CCLOG(@"diff[%f]",diffX);
+	
+
+    CCFiniteTimeAction *moveAction = [CCMoveTo actionWithDuration:(0.2 * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
+    CCFiniteTimeAction *zeroAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2)];
+    
+    id action = [CCRepeatForever actionWithAction:[CCSequence actions:moveAction, zeroAction, nil]];
+    
+    [world runAction:action];
+}
+
 @end

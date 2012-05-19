@@ -58,6 +58,8 @@
         pickerView.delegate = self;
         
 		[self addChild:self.pickerView];        
+        
+        [self displayMainMenu];
 	}
 	return self;
 }
@@ -71,6 +73,43 @@
 	
 	// don't forget to call "super dealloc"
 	[super dealloc];
+}
+
+-(void)spinPicker {
+    [pickerView spin];
+}
+
+-(void)displayMainMenu {
+    CGSize screenSize = [CCDirector sharedDirector].winSize; 
+//    if (sceneSelectMenu != nil) {
+//        [sceneSelectMenu removeFromParentAndCleanup:YES];
+//    }
+    // Main Menu
+    CCMenuItemImage *playGameButton = [CCMenuItemImage 
+                                       itemFromNormalImage:@"PlayGameButtonNormal.png" 
+                                       selectedImage:@"PlayGameButtonSelected.png" 
+                                       disabledImage:nil 
+                                       target:self 
+                                       selector:@selector(spinPicker)];
+    
+//    CCMenuItemImage *buyBookButton = [CCMenuItemImage 
+//                                      itemFromNormalImage:@"BuyBookButtonNormal.png" 
+//                                      selectedImage:@"BuyBookButtonSelected.png" 
+//                                      disabledImage:nil 
+//                                      target:self 
+//                                      selector:@selector(buyBook)];
+//    
+//    CCMenuItemImage *optionsButton = [CCMenuItemImage 
+//                                      itemFromNormalImage:@"OptionsButtonNormal.png" 
+//                                      selectedImage:@"OptionsButtonSelected.png" 
+//                                      disabledImage:nil 
+//                                      target:self 
+//                                      selector:@selector(showOptions)];
+    
+    CCMenu *mainMenu = [CCMenu menuWithItems:playGameButton, nil];
+    [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
+    [mainMenu setPosition:ccp(screenSize.width * 0.85f, screenSize.height/2.0f)];
+    [self addChild:mainMenu z:0 tag:0];
 }
 
 #pragma mark - CCPickerViewDataSource
@@ -115,7 +154,7 @@
 - (CCNode *)pickerView:(CCPickerView *)pickerView nodeForRow:(NSInteger)row forComponent:(NSInteger)component reusingNode:(CCNode *)node {
     
     CCSprite *temp = [CCSprite node];
-    temp.color = ccWHITE;
+    temp.color = ccYELLOW;
     temp.textureRect = CGRectMake(0, 0, kComponentWidth, kComponentHeight);
     
     NSString *rowString = [NSString stringWithFormat:@"%d", row];

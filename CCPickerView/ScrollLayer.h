@@ -5,6 +5,11 @@
 //  Created by Tomohisa Takaoka on 11/9/10.
 //  Copyright 2010 Systom. All rights reserved.
 //
+// https://github.com/tomohisa/scrollmenu
+//
+// Modifed by Mick Lester on 5/19/2012
+// Copyright (c) 2012 fidgetware. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
