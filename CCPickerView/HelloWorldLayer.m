@@ -76,6 +76,7 @@
 }
 
 -(void)spinPicker {
+    int row = [pickerView selectedRowInComponent:0];
     [pickerView spin];
 }
 

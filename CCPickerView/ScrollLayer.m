@@ -112,15 +112,18 @@
 }
 
 -(int) currentPage {
-	return currentPage;
+ 
+    // Always return a value in the first page.
+    int retVal = currentPage % pageSize;
+    CCLOG(@"currentPage %d, retVal %d", currentPage, retVal);
+	return retVal;
 }
 
 -(void) setCurrentPage:(int)a {
-    if (a < 0) {
-        a = 0;
-    }
-    if (a > pageSize) {
-        a = pageSize;
+    
+    // If arrayPages is bigger than pageSize+1 then we must have duplicate records to enable a continuous display, so change the value to be on the second set of values.
+    if (pageSize != [arrayPages count]) {
+            a += pageSize;
     }
     
     currentPage = a;
@@ -128,7 +131,6 @@
 	if (world) {
 		[self moveToPagePosition];
 	}
-	
 }
 
 - (void) moveToPagePosition {
@@ -137,12 +139,29 @@
 	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * currentPage) );
 //	CCLOG(@"diff[%f]",diffX);
 	
+    CCFiniteTimeAction *moveAction = nil;
+    CCFiniteTimeAction *instantAction = nil;
 	if (diffY > 0) {
-		id moveTo = [CCMoveTo actionWithDuration:(0.1 * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
-		[world runAction:moveTo];
+		moveAction = [CCMoveTo actionWithDuration:(0.1 * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
 	}
-	
+    
+    // Make sure we have not moved too far for the continuous display.  If so we want to move back to the second set of values, but without the user seeing the change.
+    if (currentPage >= pageSize*2) {
+        currentPage -= pageSize;
+        instantAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
+    }
+
+    if (currentPage < pageSize) {
+        currentPage += pageSize;
+        instantAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
+    }
+
+	id sequence = [CCSequence actions:moveAction, instantAction, nil];
+    if (sequence) {
+        [world runAction:sequence];
+    }
 }
+
 
 -(void)spin {
     currentPage = [arrayPages count]-1;

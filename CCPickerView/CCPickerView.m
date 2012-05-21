@@ -103,13 +103,16 @@
         
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
     NSInteger pageSize = [dataSource pickerView:self numberOfRowsInComponent:component];
-        
-    for (int p = 0; p < pageSize; p++) {
-        [array addObject:[delegate pickerView:self nodeForRow:p forComponent:component reusingNode:nil]];
+    
+    int numPages = 3;
+    for (int r = 0; r < numPages; r++) {
+        for (int p = 0; p < pageSize; p++) {
+            [array addObject:[delegate pickerView:self nodeForRow:p forComponent:component reusingNode:nil]];
+        }
     }
     
     scrollLayer.arrayPages = array;
-    scrollLayer.pageSize = pageSize-1;
+    scrollLayer.pageSize = pageSize;
     [scrollLayer setCurrentPage:0];
     scrollLayer.touchSize = CGSizeMake(componentSize.width, self.contentSize.height);
     [scrollLayer makePages];
