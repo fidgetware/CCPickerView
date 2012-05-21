@@ -30,5 +30,5 @@
 @property (nonatomic, retain) NSMutableArray* arrayPages;
 @property (nonatomic, assign) CGSize touchSize;
 -(void)makePages;
-
+-(void)spinWithRate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page;
 @end

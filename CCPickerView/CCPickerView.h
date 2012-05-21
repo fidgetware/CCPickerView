@@ -28,7 +28,7 @@
 - (NSInteger)selectedRowInComponent:(NSInteger)component;
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
 - (CCNode *)nodeForRow:(NSInteger)row forComponent:(NSInteger)component;
-- (void)spin;
+- (void)spinCompent:(NSInteger)component easeRate:(float)rate repeat:(NSInteger)repeat stopPage:(NSInteger)page;
 @end
 
 @protocol CCPickerViewDataSource

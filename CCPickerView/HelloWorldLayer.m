@@ -76,8 +76,9 @@
 }
 
 -(void)spinPicker {
-    int row = [pickerView selectedRowInComponent:0];
-    [pickerView spin];
+    [pickerView spinCompent:0 easeRate:3.0 repeat:5 stopPage:7];
+    [pickerView spinCompent:1 easeRate:3.0 repeat:50 stopPage:0];
+    [pickerView spinCompent:2 easeRate:3.0 repeat:10 stopPage:3];
 }
 
 -(void)displayMainMenu {

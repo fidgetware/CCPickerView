@@ -57,9 +57,9 @@
     }
 }
 
-- (void)spin {
-    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:0];
-    [scrollLayer spin];
+- (void)spinCompent:(NSInteger)component easeRate:(float)rate repeat:(NSInteger)repeat stopPage:(NSInteger)page {
+    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
+    [scrollLayer spinWithRate:rate repeat:repeat stopPage:page];
 }
 
 - (NSInteger)numberOfRowsInComponent:(NSInteger)component {

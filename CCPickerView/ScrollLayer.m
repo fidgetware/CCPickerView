@@ -137,12 +137,12 @@
 	CGPoint positionNow = world.position;
 	CGSize s = self.contentSize;
 	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * currentPage) );
-//	CCLOG(@"diff[%f]",diffX);
+	CCLOG(@"positionNow %f, diff[%f]",positionNow.y, diffY);
 	
     CCFiniteTimeAction *moveAction = nil;
     CCFiniteTimeAction *instantAction = nil;
 	if (diffY > 0) {
-		moveAction = [CCMoveTo actionWithDuration:(0.1 * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
+		moveAction = [CCMoveTo actionWithDuration:(0.2 * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
 	}
     
     // Make sure we have not moved too far for the continuous display.  If so we want to move back to the second set of values, but without the user seeing the change.
@@ -163,21 +163,34 @@
 }
 
 
--(void)spin {
-    currentPage = [arrayPages count]-1;
-
+-(void)spinWithRate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page {
     CGPoint positionNow = world.position;
 	CGSize s = self.contentSize;
-	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * currentPage) );
-    //	CCLOG(@"diff[%f]",diffX);
-	
 
-    CCFiniteTimeAction *moveAction = [CCMoveTo actionWithDuration:(0.2 * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
-    CCFiniteTimeAction *zeroAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2)];
+    float speed = 0.1;
     
-    id action = [CCRepeatForever actionWithAction:[CCSequence actions:moveAction, zeroAction, nil]];
+	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * pageSize * 2.0));
     
+    // Move to end of the second set of pages for the first time.
+    CCFiniteTimeAction *firstMoveToPageEndAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];    
+    
+    // Move to the begining of the second set of pages, the user will not see this action.
+    CCFiniteTimeAction *moveToPageStartAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * pageSize)];
+	
+    // Move from the begining of the second set of pages to the end of the second set of pages.
+    diffY = fabs( (-s.height /2 -s.height * pageSize) - (-s.height /2 -s.height * pageSize * 2.0));
+    CCFiniteTimeAction *moveToPageEndAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];    
+
+    // Move from the begining of the second set of pages to the final page, in the second set of pages.
+    diffY = fabs( (-s.height /2 -s.height * pageSize) - (-s.height /2 -s.height * (page+pageSize)));
+    CCFiniteTimeAction *moveToFinalPageAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * (page+pageSize))];    
+
+    id sRepeat = [CCRepeat actionWithAction:[CCSequence actions:moveToPageStartAction, moveToPageEndAction, nil] times:repeat];
+    
+    id action = [CCEaseInOut actionWithAction:[CCSequence actions:firstMoveToPageEndAction, sRepeat, moveToPageStartAction, moveToFinalPageAction, nil] rate:rate];
     [world runAction:action];
+    
+    currentPage = page+pageSize;
 }
 
 @end
