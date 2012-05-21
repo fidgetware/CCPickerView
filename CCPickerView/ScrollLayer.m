@@ -163,11 +163,9 @@
 }
 
 
--(void)spinWithRate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page {
+-(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page {
     CGPoint positionNow = world.position;
 	CGSize s = self.contentSize;
-
-    float speed = 0.1;
     
 	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * pageSize * 2.0));
     

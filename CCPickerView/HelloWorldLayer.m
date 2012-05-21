@@ -76,9 +76,10 @@
 }
 
 -(void)spinPicker {
-    [pickerView spinCompent:0 easeRate:3.0 repeat:5 stopPage:7];
-    [pickerView spinCompent:1 easeRate:3.0 repeat:50 stopPage:0];
-    [pickerView spinCompent:2 easeRate:3.0 repeat:10 stopPage:3];
+    // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
+    [pickerView spinComponent:0 speed:0.1 easeRate:4.0 repeat:5 stopPage:7];
+    [pickerView spinComponent:1 speed:0.1 easeRate:3.0 repeat:6 stopPage:0];
+    [pickerView spinComponent:2 speed:0.1 easeRate:5.0 repeat:4 stopPage:3];
 }
 
 -(void)displayMainMenu {
@@ -128,10 +129,10 @@
             numRows = 10;
             break;
         case 1:
-            numRows = 1;
+            numRows = 10;
             break;
         case 2:
-            numRows = 5;
+            numRows = 10;
             break;
         default:
             break;
