@@ -25,6 +25,7 @@
 @synthesize arrayPages;
 @synthesize world;
 @synthesize touchSize;
+@synthesize spinCallBackDelegate;
 
 -(id) init {
 	if ((self=[super init])) {
@@ -124,6 +125,15 @@
     // If arrayPages is bigger than pageSize+1 then we must have duplicate records to enable a continuous display, so change the value to be on the second set of values.
     if (pageSize != [arrayPages count]) {
             a += pageSize;
+    } else {
+        // We do not have a continue display so make sure that we are within the range.
+        if (a < 0) {
+            a = 0;
+        }
+        
+        if (a > pageSize-1) {
+            a = pageSize-1;
+        }
     }
     
     currentPage = a;
@@ -145,25 +155,28 @@
 		moveAction = [CCMoveTo actionWithDuration:(0.2 * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
 	}
     
-    // Make sure we have not moved too far for the continuous display.  If so we want to move back to the second set of values, but without the user seeing the change.
-    if (currentPage >= pageSize*2) {
-        currentPage -= pageSize;
-        instantAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
-    }
+    // If arrayPages is bigger than pageSize+1 then we must have duplicate records to enable a continuous display, so change the value to be on the second set of values.
+     if (pageSize != [arrayPages count]) {
+        // Make sure we have not moved too far for the continuous display.  If so we want to move back to the second set of values, but without the user seeing the change.
+        if (currentPage >= pageSize*2) {
+            currentPage -= pageSize;
+            instantAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
+        }
 
-    if (currentPage < pageSize) {
-        currentPage += pageSize;
-        instantAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
-    }
-
-	id sequence = [CCSequence actions:moveAction, instantAction, nil];
+        if (currentPage < pageSize) {
+            currentPage += pageSize;
+            instantAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * currentPage)];
+        }
+     }
+    
+    id sequence = [CCSequence actions:moveAction, instantAction, nil];
     if (sequence) {
         [world runAction:sequence];
     }
 }
 
-
--(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page {
+-(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate {
+    spinCallBackDelegate = delegate;
     CGPoint positionNow = world.position;
 	CGSize s = self.contentSize;
     
@@ -185,10 +198,16 @@
 
     id sRepeat = [CCRepeat actionWithAction:[CCSequence actions:moveToPageStartAction, moveToPageEndAction, nil] times:repeat];
     
-    id action = [CCEaseInOut actionWithAction:[CCSequence actions:firstMoveToPageEndAction, sRepeat, moveToPageStartAction, moveToFinalPageAction, nil] rate:rate];
+    id doneSpinning  = [CCCallFunc actionWithTarget:self selector:@selector(onDoneSpinning)];
+    
+    id action = [CCEaseInOut actionWithAction:[CCSequence actions:firstMoveToPageEndAction, sRepeat, moveToPageStartAction, moveToFinalPageAction, doneSpinning, nil] rate:rate];
     [world runAction:action];
     
     currentPage = page+pageSize;
+}
+
+-(void)onDoneSpinning {
+    [spinCallBackDelegate onDoneSpinning:self];
 }
 
 @end

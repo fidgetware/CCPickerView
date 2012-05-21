@@ -14,6 +14,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@protocol ScrollLayerDelegate;
+
 @interface ScrollLayer : CCLayer <CCTargetedTouchDelegate>{
 	int pageSize;
 	int currentPage;
@@ -29,6 +31,11 @@
 @property (nonatomic, assign) int currentPage;
 @property (nonatomic, retain) NSMutableArray* arrayPages;
 @property (nonatomic, assign) CGSize touchSize;
+@property (nonatomic, assign) id <ScrollLayerDelegate> spinCallBackDelegate;
 -(void)makePages;
--(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page;
+-(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate;
+@end
+
+@protocol ScrollLayerDelegate <NSObject>
+-(void)onDoneSpinning:(ScrollLayer *)scrollLayer;
 @end

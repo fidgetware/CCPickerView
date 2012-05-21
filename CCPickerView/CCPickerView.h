@@ -7,14 +7,16 @@
 //
 
 #import "CCLayer.h"
+#import "ScrollLayer.h"
 
 @protocol CCPickerViewDataSource;
 @protocol CCPickerViewDelegate;
 
-@interface CCPickerView : CCLayer {
+@interface CCPickerView : CCLayer <ScrollLayerDelegate> {
     id <CCPickerViewDataSource> dataSource;
     id <CCPickerViewDelegate> delegate;
     CGRect rect;
+    BOOL repeatNodes;
 }
 @property (nonatomic, assign) id <CCPickerViewDataSource> dataSource;
 @property (nonatomic, assign) id <CCPickerViewDelegate> delegate;
@@ -28,15 +30,16 @@
 - (NSInteger)selectedRowInComponent:(NSInteger)component;
 - (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated;
 - (CCNode *)nodeForRow:(NSInteger)row forComponent:(NSInteger)component;
+- (void)autoRepeatNodes:(BOOL)repeat;
 - (void)spinComponent:(NSInteger)component speed:(float)speed easeRate:(float)rate repeat:(NSInteger)repeat stopPage:(NSInteger)page;
 @end
 
-@protocol CCPickerViewDataSource
+@protocol CCPickerViewDataSource <NSObject>
 - (NSInteger)numberOfComponentsInPickerView:(CCPickerView *)pickerView;
 - (NSInteger)pickerView:(CCPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 @end
 
-@protocol CCPickerViewDelegate
+@protocol CCPickerViewDelegate <NSObject>
 - (CGFloat)pickerView:(CCPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
 - (CGFloat)pickerView:(CCPickerView *)pickerView widthForComponent:(NSInteger)component;
 - (NSString *)pickerView:(CCPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
@@ -45,4 +48,6 @@
 - (CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView;
 - (CGSize)sizeOfPickerView:(CCPickerView *)pickerView; 
 - (CCNode *)overlayImage:(CCPickerView *)pickerView;
+@optional
+- (void)onDoneSpinning:(CCPickerView *)pickerView component:(NSInteger)component;
 @end

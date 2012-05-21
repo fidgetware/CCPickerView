@@ -7,7 +7,6 @@
 //
 
 #import "CCPickerView.h"
-#import "ScrollLayer.h"
 
 @implementation CCPickerView
 @synthesize dataSource;
@@ -16,6 +15,7 @@
 
 -(id) init {
 	if ((self=[super init])) {
+        repeatNodes = YES;
 	}
     
 	return self;
@@ -57,9 +57,18 @@
     }
 }
 
+- (void)autoRepeatNodes:(BOOL)repeat {
+    repeatNodes = repeat;
+    [self reloadAllComponents];
+}
+
 - (void)spinComponent:(NSInteger)component speed:(float)speed easeRate:(float)rate repeat:(NSInteger)repeat stopPage:(NSInteger)page {
-    ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
-    [scrollLayer spin:speed rate:rate repeat:repeat stopPage:page];
+    if (repeatNodes) {
+        ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
+        [scrollLayer spin:speed rate:rate repeat:repeat stopPage:page callBackDelegate:self];
+    } else {
+        CCLOG(@"You need to turn on autoRepeatNodes");
+    }
 }
 
 - (NSInteger)numberOfRowsInComponent:(NSInteger)component {
@@ -104,7 +113,9 @@
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
     NSInteger pageSize = [dataSource pickerView:self numberOfRowsInComponent:component];
     
-    int numPages = 3;
+    // Duplicate the nodes if we have repeatNodes on.
+    int numPages = repeatNodes?3:1;
+    
     for (int r = 0; r < numPages; r++) {
         for (int p = 0; p < pageSize; p++) {
             [array addObject:[delegate pickerView:self nodeForRow:p forComponent:component reusingNode:nil]];
@@ -201,6 +212,13 @@
     
 	glDisable(GL_SCISSOR_TEST);
 	glPopMatrix();
+}
+
+#pragma mark - ScrollLayerDelegate
+-(void)onDoneSpinning:(ScrollLayer *)scrollLayer {
+    if ([delegate respondsToSelector:@selector(onDoneSpinning: component:)]) {
+        [delegate onDoneSpinning:self component:scrollLayer.tag];
+    }
 }
 
 @end

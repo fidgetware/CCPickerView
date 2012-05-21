@@ -57,6 +57,8 @@
         pickerView.dataSource = self;
         pickerView.delegate = self;
         
+        // If you do not want the nodes repeated uncomment the line below.
+//        [pickerView autoRepeatNodes:NO];
 		[self addChild:self.pickerView];        
         
         [self displayMainMenu];
@@ -187,4 +189,7 @@
     return sprite;
 }
 
+- (void)onDoneSpinning:(CCPickerView *)pickerView component:(NSInteger)component {
+    NSLog(@"here finally for component %d", component);
+}
 @end
