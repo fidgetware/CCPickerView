@@ -13,6 +13,9 @@
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
 @synthesize pickerView;
+@synthesize feedbackLabel0;
+@synthesize feedbackLabel1;
+@synthesize feedbackLabel2;
 
 #define kComponentWidth 54
 #define kComponentHeight 32
@@ -40,26 +43,32 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-
 		// ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
 	
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
-        
         self.pickerView = [CCPickerView node];
-        pickerView.position = ccp(size.width/2 ,size.height/2);
+        pickerView.position = ccp(size.width*0.25 ,size.height/2);
         pickerView.dataSource = self;
         pickerView.delegate = self;
         
         // If you do not want the nodes repeated uncomment the line below.
 //        [pickerView autoRepeatNodes:NO];
 		[self addChild:self.pickerView];        
+        
+        feedbackLabel0 = [CCLabelTTF labelWithString:@"Component 0 Stopped " fontName:@"Helvetica" fontSize:16];
+        feedbackLabel1 = [CCLabelTTF labelWithString:@"Component 1 Stopped " fontName:@"Helvetica" fontSize:16];
+        feedbackLabel2 = [CCLabelTTF labelWithString:@"Component 2 Stopped " fontName:@"Helvetica" fontSize:16];
+        feedbackLabel0.color = ccc3(255, 255, 255);
+        feedbackLabel1.color = ccc3(255, 255, 255);
+        feedbackLabel2.color = ccc3(255, 255, 255);
+
+		feedbackLabel0.position =  ccp( size.width *0.8 , size.height*0.90 );
+		feedbackLabel1.position =  ccp( size.width *0.8 , size.height*0.85 );
+		feedbackLabel2.position =  ccp( size.width *0.8 , size.height*0.80);
+		
+		[self addChild: feedbackLabel0];
+		[self addChild: feedbackLabel1];
+		[self addChild: feedbackLabel2];
         
         [self displayMainMenu];
 	}
@@ -78,40 +87,55 @@
 }
 
 -(void)spinPicker {
+    
+    int stopPage0 = arc4random() % 10;
+    int stopPage1 = arc4random() % 10;
+    int stopPage2 = arc4random() % 10;
+
+    // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
     // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
-    [pickerView spinComponent:0 speed:0.1 easeRate:4.0 repeat:5 stopPage:7];
-    [pickerView spinComponent:1 speed:0.1 easeRate:3.0 repeat:6 stopPage:0];
-    [pickerView spinComponent:2 speed:0.1 easeRate:5.0 repeat:4 stopPage:3];
+    [pickerView spinComponent:0 speedFactor:0.1 easeRate:4.0 repeat:5 stopPage:stopPage0];
+    [pickerView spinComponent:1 speedFactor:0.1 easeRate:3.0 repeat:6 stopPage:stopPage1];
+    [pickerView spinComponent:2 speedFactor:0.1 easeRate:5.0 repeat:4 stopPage:stopPage2];
+
+    [feedbackLabel0 setString:@"Component 0 Spinning"];
+    [feedbackLabel1 setString:@"Component 1 Spinning"];
+    [feedbackLabel2 setString:@"Component 2 Spinning"];
+    feedbackLabel0.color = ccc3(255, 0, 0);
+    feedbackLabel1.color = ccc3(255, 0, 0);
+    feedbackLabel2.color = ccc3(255, 0, 0);
+}
+
+-(void)spinPickerSlow {
+    
+    int stopPage0 = arc4random() % 10;
+    int stopPage1 = arc4random() % 10;
+    int stopPage2 = arc4random() % 10;
+    
+    // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
+    // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
+    [pickerView spinComponent:0 speedFactor:1.0 easeRate:1.0 repeat:2 stopPage:stopPage0];
+    [pickerView spinComponent:1 speedFactor:1.2 easeRate:1.0 repeat:1 stopPage:stopPage1];
+    [pickerView spinComponent:2 speedFactor:1.5 easeRate:1.0 repeat:1 stopPage:stopPage2];
+    
+    [feedbackLabel0 setString:@"Component 0 Spinning"];
+    [feedbackLabel1 setString:@"Component 1 Spinning"];
+    [feedbackLabel2 setString:@"Component 2 Spinning"];
+    feedbackLabel0.color = ccc3(255, 0, 0);
+    feedbackLabel1.color = ccc3(255, 0, 0);
+    feedbackLabel2.color = ccc3(255, 0, 0);
 }
 
 -(void)displayMainMenu {
     CGSize screenSize = [CCDirector sharedDirector].winSize; 
-//    if (sceneSelectMenu != nil) {
-//        [sceneSelectMenu removeFromParentAndCleanup:YES];
-//    }
-    // Main Menu
-    CCMenuItemImage *playGameButton = [CCMenuItemImage 
-                                       itemFromNormalImage:@"PlayGameButtonNormal.png" 
-                                       selectedImage:@"PlayGameButtonSelected.png" 
-                                       disabledImage:nil 
-                                       target:self 
-                                       selector:@selector(spinPicker)];
     
-//    CCMenuItemImage *buyBookButton = [CCMenuItemImage 
-//                                      itemFromNormalImage:@"BuyBookButtonNormal.png" 
-//                                      selectedImage:@"BuyBookButtonSelected.png" 
-//                                      disabledImage:nil 
-//                                      target:self 
-//                                      selector:@selector(buyBook)];
-//    
-//    CCMenuItemImage *optionsButton = [CCMenuItemImage 
-//                                      itemFromNormalImage:@"OptionsButtonNormal.png" 
-//                                      selectedImage:@"OptionsButtonSelected.png" 
-//                                      disabledImage:nil 
-//                                      target:self 
-//                                      selector:@selector(showOptions)];
-    
-    CCMenu *mainMenu = [CCMenu menuWithItems:playGameButton, nil];
+    CCLabelTTF *spinLabel = [CCLabelTTF labelWithString:@"Spin" fontName:@"Helvetica" fontSize:32];
+    CCMenuItemLabel *menuSpinLabel = [CCMenuItemLabel itemWithLabel:spinLabel target:self selector:@selector(spinPicker)];
+
+    CCLabelTTF *spinSlowLabel = [CCLabelTTF labelWithString:@"Spin Slow" fontName:@"Helvetica" fontSize:32];
+    CCMenuItemLabel *menuSpinSlowLabel = [CCMenuItemLabel itemWithLabel:spinSlowLabel target:self selector:@selector(spinPickerSlow)];
+
+    CCMenu *mainMenu = [CCMenu menuWithItems:menuSpinLabel, menuSpinSlowLabel, nil];
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 0.85f, screenSize.height/2.0f)];
     [self addChild:mainMenu z:0 tag:0];
@@ -190,6 +214,26 @@
 }
 
 - (void)onDoneSpinning:(CCPickerView *)pickerView component:(NSInteger)component {
-    NSLog(@"here finally for component %d", component);
+    switch (component) {
+        case 0: {
+            [feedbackLabel0 setString:@"Component 0 Stopped"];
+            feedbackLabel0.color = ccc3(255, 255, 255);
+            break;
+        }
+        case 1: {
+            [feedbackLabel1 setString:@"Component 1 Stopped"];
+            feedbackLabel1.color = ccc3(255, 255, 255);
+            break;
+        }
+        case 2: {
+            [feedbackLabel2 setString:@"Component 2 Stopped"];
+            feedbackLabel2.color = ccc3(255, 255, 255);
+            break;
+        }
+        default:
+            break;
+    }
+
+    NSLog(@"Component %d stopped spinning.", component);
 }
 @end

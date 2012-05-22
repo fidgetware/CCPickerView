@@ -15,8 +15,14 @@
 @interface HelloWorldLayer : CCLayer <CCPickerViewDataSource, CCPickerViewDelegate>
 {
     CCPickerView *pickerView;
+    CCLabelTTF *feedbackLabel0;
+    CCLabelTTF *feedbackLabel1;
+    CCLabelTTF *feedbackLabel2;
 }
 @property (nonatomic, retain) CCPickerView *pickerView;
+@property (nonatomic, retain) CCLabelTTF *feedbackLabel0;
+@property (nonatomic, retain) CCLabelTTF *feedbackLabel1;
+@property (nonatomic, retain) CCLabelTTF *feedbackLabel2;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
