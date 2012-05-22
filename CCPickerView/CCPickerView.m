@@ -62,10 +62,10 @@
     [self reloadAllComponents];
 }
 
-- (void)spinComponent:(NSInteger)component speed:(float)speed easeRate:(float)rate repeat:(NSInteger)repeat stopPage:(NSInteger)page {
+- (void)spinComponent:(NSInteger)component speed:(float)speed easeRate:(float)rate repeat:(NSInteger)repeat stopRow:(NSInteger)row {
     if (repeatNodes) {
         ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
-        [scrollLayer spin:speed rate:rate repeat:repeat stopPage:page callBackDelegate:self];
+        [scrollLayer spin:speed rate:rate repeat:repeat stopPage:row callBackDelegate:self];
     } else {
         CCLOG(@"You need to turn on autoRepeatNodes");
     }

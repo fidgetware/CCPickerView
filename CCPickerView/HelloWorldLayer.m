@@ -88,15 +88,15 @@
 
 -(void)spinPicker {
     
-    int stopPage0 = arc4random() % 10;
-    int stopPage1 = arc4random() % 10;
-    int stopPage2 = arc4random() % 10;
+    int stopRow0 = arc4random() % 10;
+    int stopRow1 = arc4random() % 10;
+    int stopRow2 = arc4random() % 10;
 
-    // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
+    // Change the easeRate, speed, repeat and stopRow for the desired spin effect.
     // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
-    [pickerView spinComponent:0 speed:15 easeRate:1 repeat:4 stopPage:stopPage0];
-    [pickerView spinComponent:1 speed:15 easeRate:1 repeat:4 stopPage:stopPage1];
-    [pickerView spinComponent:2 speed:15 easeRate:1 repeat:4 stopPage:stopPage2];
+    [pickerView spinComponent:0 speed:15 easeRate:1 repeat:4 stopRow:stopRow0];
+    [pickerView spinComponent:1 speed:15 easeRate:1 repeat:4 stopRow:stopRow1];
+    [pickerView spinComponent:2 speed:15 easeRate:1 repeat:4 stopRow:stopRow2];
 
     [feedbackLabel0 setString:@"Component 0 Spinning"];
     [feedbackLabel1 setString:@"Component 1 Spinning"];
@@ -108,15 +108,15 @@
 
 -(void)spinPickerSlow {
     
-    int stopPage0 = arc4random() % 10;
-    int stopPage1 = arc4random() % 10;
-    int stopPage2 = arc4random() % 10;
+    int stopRow0 = arc4random() % 10;
+    int stopRow1 = arc4random() % 10;
+    int stopRow2 = arc4random() % 10;
     
-    // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
+    // Change the easeRate, speed, repeat and stopRow for the desired spin effect.
     // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
-    [pickerView spinComponent:0 speed:5 easeRate:1.0 repeat:2 stopPage:stopPage0];
-    [pickerView spinComponent:1 speed:4 easeRate:1.0 repeat:1 stopPage:stopPage1];
-    [pickerView spinComponent:2 speed:1 easeRate:1.0 repeat:1 stopPage:stopPage2];
+    [pickerView spinComponent:0 speed:5 easeRate:1.0 repeat:2 stopRow:stopRow0];
+    [pickerView spinComponent:1 speed:4 easeRate:1.0 repeat:1 stopRow:stopRow1];
+    [pickerView spinComponent:2 speed:1 easeRate:1.0 repeat:0 stopRow:stopRow2];
     
     [feedbackLabel0 setString:@"Component 0 Spinning"];
     [feedbackLabel1 setString:@"Component 1 Spinning"];
@@ -128,15 +128,15 @@
 
 -(void)spinPickerEase {
     
-    int stopPage0 = arc4random() % 10;
-    int stopPage1 = arc4random() % 10;
-    int stopPage2 = arc4random() % 10;
+    int stopRow0 = arc4random() % 10;
+    int stopRow1 = arc4random() % 10;
+    int stopRow2 = arc4random() % 10;
     
-    // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
+    // Change the easeRate, speed, repeat and stopRow for the desired spin effect.
     // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
-    [pickerView spinComponent:0 speed:10 easeRate:1 repeat:2 stopPage:stopPage0];
-    [pickerView spinComponent:1 speed:10 easeRate:2 repeat:2 stopPage:stopPage1];
-    [pickerView spinComponent:2 speed:10 easeRate:3 repeat:2 stopPage:stopPage2];
+    [pickerView spinComponent:0 speed:10 easeRate:1 repeat:2 stopRow:stopRow0];
+    [pickerView spinComponent:1 speed:10 easeRate:2 repeat:2 stopRow:stopRow1];
+    [pickerView spinComponent:2 speed:10 easeRate:3 repeat:2 stopRow:stopRow2];
     
     [feedbackLabel0 setString:@"Component 0 Spinning"];
     [feedbackLabel1 setString:@"Component 1 Spinning"];

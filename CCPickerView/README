@@ -1,0 +1,72 @@
+CCPickerView is a Cocos2D near drop in replacement for UIPickerView.  Many of the API’s are very similar.
+
+For example UIPickerView has this delegate callback
+
+(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+
+this is the equivalent callback for CCPickerView
+
+(CGFloat)pickerView:(CCPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
+
+Like UIPickerView CCPickerView has two protocols CCPickerViewDataSource and CCPickerViewDelate, which as you can guess are very similar to the UIPickerViewDataSource and UIPickerViewDelegate.
+
+There are some differences as to be expected.  You are working with CCNodes instead of UIViews.
+
+(CCNode *)nodeForRow:(NSInteger)row forComponent:(NSInteger)component;
+
+instead of
+
+(UIView *)viewForRow:(NSInteger)row forComponent:(NSInteger)component;
+
+
+There are also some extras that have been added.
+
+Rotating continuously - CCPickerView components rotate continuously instead of stopping on the last row.  UIPickerView stops on the last row. You have to do your own development repeating row data to have a continuously rotating component.
+
+If you do not like this feature you can turn it off with the call to
+
+(void)autoRepeatNodes:(BOOL)repeat;
+
+Spin - CCPickerView has a method that allows you to spin the components.  This is described in more detail below.
+
+
+With CCPickerView you can create a picker of any size and any number of components. Unlike UIPickerView you do need to provide your own image for the picker. The assumption being that you would want something that matches your game.  There is a 3 slot image supplied with the sample project that you can modify for your needs.
+
+
+There are three additional protocol methods that you have to provide, which are described below.
+
+(CCNode *)overlayImage:(CCPickerView *)pickerView;
+
+This is call returns the image to “overlay” the components. Look at the 3slots.png image to get an idea of what is needed.
+
+(CGSize)sizeOfPickerView:(CCPickerView *)pickerView;
+
+This is how big your pickerView is going to be.  The size is used to make sure the components do not extend beyond these edges.
+
+(CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView;
+
+This is used to determine how far apart the components need to be so that they line up with the transparent sections of your overlay image.
+
+In order to spin the components call the method
+
+(void)spinComponent:(NSInteger)component speed:(float)speed easeRate:(float)rate repeat:(NSInteger)repeat stopPage:(NSInteger)page;
+
+speed - determines how fast the component is going to spin.
+easeRate - under the hood CCEaseInOut is used so you need to provide a value, enter a value of 1 if you do not want ease in or out.
+repeat - how many times the component will spin from the first value to the last value.
+stopRow - This is the row that you want the picker to stop on.
+
+You can provide an optional callback method called
+
+(void)onDoneSpinning:(CCPickerView *)pickerView component:(NSInteger)component;
+
+This method will be called when each component stops spinning.
+
+
+What’s missing?
+
+There is no call for showsSelectionIndicator as you are supplying the overlay image.
+
+The UIPickerView allows you to flick a component and it will rotate quickly depending on how hard you flick.  CCPickerView does not do this.  I would love to have this functionality, but it is not there.  Hopefully some smart developer will explain how to add it.
+
+This Code is released under the MIT License by [fidgetware](http://fidgetware.com)

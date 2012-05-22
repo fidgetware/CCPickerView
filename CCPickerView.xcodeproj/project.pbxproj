@@ -15,6 +15,8 @@
 		007EE5E31566A996000EE6BC /* bitmapFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5DF1566A994000EE6BC /* bitmapFont-hd.png */; };
 		007EE5E41566A996000EE6BC /* bitmapFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5E01566A995000EE6BC /* bitmapFont.fnt */; };
 		007EE5E51566A996000EE6BC /* bitmapFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5E11566A995000EE6BC /* bitmapFont.png */; };
+		0083D1D7156BEB9800239A7E /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0083D1D6156BEB9700239A7E /* README */; };
+		0083D1D9156BECAA00239A7E /* LICENSE_CCPickerView.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0083D1D8156BECAA00239A7E /* LICENSE_CCPickerView.txt */; };
 		00CA0DF11563F7B900F1E32D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF01563F7B900F1E32D /* QuartzCore.framework */; };
 		00CA0DF31563F7B900F1E32D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF21563F7B900F1E32D /* OpenGLES.framework */; };
 		00CA0DF51563F7B900F1E32D /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF41563F7B900F1E32D /* OpenAL.framework */; };
@@ -143,6 +145,8 @@
 		007EE5DF1566A994000EE6BC /* bitmapFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bitmapFont-hd.png"; sourceTree = "<group>"; };
 		007EE5E01566A995000EE6BC /* bitmapFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bitmapFont.fnt; sourceTree = "<group>"; };
 		007EE5E11566A995000EE6BC /* bitmapFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bitmapFont.png; sourceTree = "<group>"; };
+		0083D1D6156BEB9700239A7E /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		0083D1D8156BECAA00239A7E /* LICENSE_CCPickerView.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_CCPickerView.txt; sourceTree = "<group>"; };
 		00CA0DEC1563F7B900F1E32D /* CCPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CA0DF01563F7B900F1E32D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		00CA0DF21563F7B900F1E32D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -434,6 +438,8 @@
 		00CA0E001563F7B900F1E32D /* CCPickerView */ = {
 			isa = PBXGroup;
 			children = (
+				0083D1D6156BEB9700239A7E /* README */,
+				0083D1D8156BECAA00239A7E /* LICENSE_CCPickerView.txt */,
 				007EE5C7156467E9000EE6BC /* CCPickerView.h */,
 				007EE5C8156467EA000EE6BC /* CCPickerView.m */,
 				00CA0F521563F7BA00F1E32D /* AppDelegate.h */,
@@ -852,6 +858,8 @@
 				007EE5E31566A996000EE6BC /* bitmapFont-hd.png in Resources */,
 				007EE5E41566A996000EE6BC /* bitmapFont.fnt in Resources */,
 				007EE5E51566A996000EE6BC /* bitmapFont.png in Resources */,
+				0083D1D7156BEB9800239A7E /* README in Resources */,
+				0083D1D9156BECAA00239A7E /* LICENSE_CCPickerView.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
