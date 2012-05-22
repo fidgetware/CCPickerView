@@ -33,7 +33,7 @@
 @property (nonatomic, assign) CGSize touchSize;
 @property (nonatomic, assign) id <ScrollLayerDelegate> spinCallBackDelegate;
 -(void)makePages;
--(void)spin:(float)speedFactor rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate;
+-(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate;
 @end
 
 @protocol ScrollLayerDelegate <NSObject>

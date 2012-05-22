@@ -94,9 +94,9 @@
 
     // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
     // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
-    [pickerView spinComponent:0 speedFactor:0.1 easeRate:4.0 repeat:5 stopPage:stopPage0];
-    [pickerView spinComponent:1 speedFactor:0.1 easeRate:3.0 repeat:6 stopPage:stopPage1];
-    [pickerView spinComponent:2 speedFactor:0.1 easeRate:5.0 repeat:4 stopPage:stopPage2];
+    [pickerView spinComponent:0 speed:15 easeRate:1 repeat:4 stopPage:stopPage0];
+    [pickerView spinComponent:1 speed:15 easeRate:1 repeat:4 stopPage:stopPage1];
+    [pickerView spinComponent:2 speed:15 easeRate:1 repeat:4 stopPage:stopPage2];
 
     [feedbackLabel0 setString:@"Component 0 Spinning"];
     [feedbackLabel1 setString:@"Component 1 Spinning"];
@@ -114,9 +114,9 @@
     
     // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
     // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
-    [pickerView spinComponent:0 speedFactor:1.0 easeRate:1.0 repeat:2 stopPage:stopPage0];
-    [pickerView spinComponent:1 speedFactor:1.2 easeRate:1.0 repeat:1 stopPage:stopPage1];
-    [pickerView spinComponent:2 speedFactor:1.5 easeRate:1.0 repeat:1 stopPage:stopPage2];
+    [pickerView spinComponent:0 speed:5 easeRate:1.0 repeat:2 stopPage:stopPage0];
+    [pickerView spinComponent:1 speed:4 easeRate:1.0 repeat:1 stopPage:stopPage1];
+    [pickerView spinComponent:2 speed:1 easeRate:1.0 repeat:1 stopPage:stopPage2];
     
     [feedbackLabel0 setString:@"Component 0 Spinning"];
     [feedbackLabel1 setString:@"Component 1 Spinning"];
@@ -125,6 +125,27 @@
     feedbackLabel1.color = ccc3(255, 0, 0);
     feedbackLabel2.color = ccc3(255, 0, 0);
 }
+
+-(void)spinPickerEase {
+    
+    int stopPage0 = arc4random() % 10;
+    int stopPage1 = arc4random() % 10;
+    int stopPage2 = arc4random() % 10;
+    
+    // Change the easeRate, speed, repeat and stopPage for the desired spin effect.
+    // Seems like there is a bug with EaseInOut so use an integer value for easeRate.
+    [pickerView spinComponent:0 speed:10 easeRate:1 repeat:2 stopPage:stopPage0];
+    [pickerView spinComponent:1 speed:10 easeRate:2 repeat:2 stopPage:stopPage1];
+    [pickerView spinComponent:2 speed:10 easeRate:3 repeat:2 stopPage:stopPage2];
+    
+    [feedbackLabel0 setString:@"Component 0 Spinning"];
+    [feedbackLabel1 setString:@"Component 1 Spinning"];
+    [feedbackLabel2 setString:@"Component 2 Spinning"];
+    feedbackLabel0.color = ccc3(255, 0, 0);
+    feedbackLabel1.color = ccc3(255, 0, 0);
+    feedbackLabel2.color = ccc3(255, 0, 0);
+}
+
 
 -(void)displayMainMenu {
     CGSize screenSize = [CCDirector sharedDirector].winSize; 
@@ -135,7 +156,10 @@
     CCLabelTTF *spinSlowLabel = [CCLabelTTF labelWithString:@"Spin Slow" fontName:@"Helvetica" fontSize:32];
     CCMenuItemLabel *menuSpinSlowLabel = [CCMenuItemLabel itemWithLabel:spinSlowLabel target:self selector:@selector(spinPickerSlow)];
 
-    CCMenu *mainMenu = [CCMenu menuWithItems:menuSpinLabel, menuSpinSlowLabel, nil];
+    CCLabelTTF *spinEaseLabel = [CCLabelTTF labelWithString:@"Spin Ease" fontName:@"Helvetica" fontSize:32];
+    CCMenuItemLabel *menuSpinEaseLabel = [CCMenuItemLabel itemWithLabel:spinEaseLabel target:self selector:@selector(spinPickerEase)];
+
+    CCMenu *mainMenu = [CCMenu menuWithItems:menuSpinLabel, menuSpinSlowLabel, menuSpinEaseLabel, nil];
     [mainMenu alignItemsVerticallyWithPadding:screenSize.height * 0.059f];
     [mainMenu setPosition:ccp(screenSize.width * 0.85f, screenSize.height/2.0f)];
     [self addChild:mainMenu z:0 tag:0];

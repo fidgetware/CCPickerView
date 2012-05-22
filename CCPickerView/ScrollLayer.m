@@ -175,26 +175,28 @@
     }
 }
 
--(void)spin:(float)speedFactor rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate {
+-(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate {
     spinCallBackDelegate = delegate;
     CGPoint positionNow = world.position;
 	CGSize s = self.contentSize;
     
+    speed = 1.0/speed;
+    
 	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * pageSize * 2.0));
     
     // Move to end of the second set of pages for the first time.
-    CCFiniteTimeAction *firstMoveToPageEndAction = [CCMoveTo actionWithDuration:(speedFactor * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];    
+    CCFiniteTimeAction *firstMoveToPageEndAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];    
     
     // Move to the begining of the second set of pages, the user will not see this action.
     CCFiniteTimeAction *moveToPageStartAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * pageSize)];
 	
     // Move from the begining of the second set of pages to the end of the second set of pages.
     diffY = fabs( (-s.height /2 -s.height * pageSize) - (-s.height /2 -s.height * pageSize * 2.0));
-    CCFiniteTimeAction *moveToPageEndAction = [CCMoveTo actionWithDuration:(speedFactor * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];    
+    CCFiniteTimeAction *moveToPageEndAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];    
 
     // Move from the begining of the second set of pages to the final page, in the second set of pages.
     diffY = fabs( (-s.height /2 -s.height * pageSize) - (-s.height /2 -s.height * (page+pageSize)));
-    CCFiniteTimeAction *moveToFinalPageAction = [CCMoveTo actionWithDuration:(speedFactor * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * (page+pageSize))];    
+    CCFiniteTimeAction *moveToFinalPageAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * (page+pageSize))];    
 
     id sRepeat = [CCRepeat actionWithAction:[CCSequence actions:moveToPageStartAction, moveToPageEndAction, nil] times:repeat];
     
