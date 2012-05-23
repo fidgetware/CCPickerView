@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00703E78156D281300C40AF5 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 00703E77156D281300C40AF5 /* README */; };
 		007EE43F15641963000EE6BC /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE43E15641963000EE6BC /* ScrollLayer.m */; };
 		007EE5CB156467EA000EE6BC /* CCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EE5C8156467EA000EE6BC /* CCPickerView.m */; };
 		007EE5D115659C5B000EE6BC /* 3slots.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5CF15659C5B000EE6BC /* 3slots.png */; };
@@ -15,7 +16,6 @@
 		007EE5E31566A996000EE6BC /* bitmapFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5DF1566A994000EE6BC /* bitmapFont-hd.png */; };
 		007EE5E41566A996000EE6BC /* bitmapFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5E01566A995000EE6BC /* bitmapFont.fnt */; };
 		007EE5E51566A996000EE6BC /* bitmapFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 007EE5E11566A995000EE6BC /* bitmapFont.png */; };
-		0083D1D7156BEB9800239A7E /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0083D1D6156BEB9700239A7E /* README */; };
 		0083D1D9156BECAA00239A7E /* LICENSE_CCPickerView.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0083D1D8156BECAA00239A7E /* LICENSE_CCPickerView.txt */; };
 		00CA0DF11563F7B900F1E32D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF01563F7B900F1E32D /* QuartzCore.framework */; };
 		00CA0DF31563F7B900F1E32D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CA0DF21563F7B900F1E32D /* OpenGLES.framework */; };
@@ -135,6 +135,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00703E77156D281300C40AF5 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
 		007EE43D15641963000EE6BC /* ScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		007EE43E15641963000EE6BC /* ScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		007EE5C7156467E9000EE6BC /* CCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPickerView.h; sourceTree = "<group>"; };
@@ -145,7 +146,6 @@
 		007EE5DF1566A994000EE6BC /* bitmapFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bitmapFont-hd.png"; sourceTree = "<group>"; };
 		007EE5E01566A995000EE6BC /* bitmapFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bitmapFont.fnt; sourceTree = "<group>"; };
 		007EE5E11566A995000EE6BC /* bitmapFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bitmapFont.png; sourceTree = "<group>"; };
-		0083D1D6156BEB9700239A7E /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		0083D1D8156BECAA00239A7E /* LICENSE_CCPickerView.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_CCPickerView.txt; sourceTree = "<group>"; };
 		00CA0DEC1563F7B900F1E32D /* CCPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CA0DF01563F7B900F1E32D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -438,7 +438,7 @@
 		00CA0E001563F7B900F1E32D /* CCPickerView */ = {
 			isa = PBXGroup;
 			children = (
-				0083D1D6156BEB9700239A7E /* README */,
+				00703E77156D281300C40AF5 /* README */,
 				0083D1D8156BECAA00239A7E /* LICENSE_CCPickerView.txt */,
 				007EE5C7156467E9000EE6BC /* CCPickerView.h */,
 				007EE5C8156467EA000EE6BC /* CCPickerView.m */,
@@ -858,8 +858,8 @@
 				007EE5E31566A996000EE6BC /* bitmapFont-hd.png in Resources */,
 				007EE5E41566A996000EE6BC /* bitmapFont.fnt in Resources */,
 				007EE5E51566A996000EE6BC /* bitmapFont.png in Resources */,
-				0083D1D7156BEB9800239A7E /* README in Resources */,
 				0083D1D9156BECAA00239A7E /* LICENSE_CCPickerView.txt in Resources */,
+				00703E78156D281300C40AF5 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
