@@ -65,7 +65,7 @@
 - (void)spinComponent:(NSInteger)component speed:(float)speed easeRate:(float)rate repeat:(NSInteger)repeat stopRow:(NSInteger)row {
     if (repeatNodes) {
         ScrollLayer *scrollLayer = (ScrollLayer *)[self getChildByTag:component];
-        [scrollLayer spin:speed rate:rate repeat:repeat stopPage:row callBackDelegate:self];
+        [scrollLayer spin:speed rate:rate repeat:repeat stopPage:row];
     } else {
         CCLOG(@"You need to turn on autoRepeatNodes");
     }
@@ -92,6 +92,7 @@
     [self removeChildByTag:component cleanup:YES];
     
     ScrollLayer *scrollLayer = [ScrollLayer node];
+    scrollLayer.delegate = self;
     
     for (int i = 0; i < numComponents; i++) {
         componentsWidth += [delegate pickerView:self widthForComponent:i];
@@ -215,6 +216,12 @@
 }
 
 #pragma mark - ScrollLayerDelegate
+-(void)onDoneSelecting:(ScrollLayer *)scrollLayer {
+    if ([delegate respondsToSelector:@selector(pickerView: didSelectRow: inComponent:)]) {
+        [delegate pickerView:self didSelectRow:scrollLayer.currentPage inComponent:scrollLayer.tag];
+    }
+}
+
 -(void)onDoneSpinning:(ScrollLayer *)scrollLayer {
     if ([delegate respondsToSelector:@selector(onDoneSpinning: component:)]) {
         [delegate onDoneSpinning:self component:scrollLayer.tag];

@@ -219,7 +219,7 @@
 }
 
 - (void)pickerView:(CCPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
+    CCLOG(@"didSelect row = %d, component = %d", row, component);
 }
 
 - (CGFloat)spaceBetweenComponents:(CCPickerView *)pickerView {

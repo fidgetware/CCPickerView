@@ -25,7 +25,7 @@
 @synthesize arrayPages;
 @synthesize world;
 @synthesize touchSize;
-@synthesize spinCallBackDelegate;
+@synthesize delegate;
 
 -(id) init {
 	if ((self=[super init])) {
@@ -104,6 +104,8 @@
     
     self.currentPage = self.currentPage - pagesToMove;
 	isTouching = NO;
+    [delegate onDoneSelecting:self];
+    
     CCLOG(@"ended %f %f", world.position.x, world.position.y);    
 }
 
@@ -175,8 +177,7 @@
     }
 }
 
--(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate {
-    spinCallBackDelegate = delegate;
+-(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page {
     CGPoint positionNow = world.position;
 	CGSize s = self.contentSize;
     
@@ -209,7 +210,7 @@
 }
 
 -(void)onDoneSpinning {
-    [spinCallBackDelegate onDoneSpinning:self];
+    [delegate onDoneSpinning:self];
 }
 
 @end

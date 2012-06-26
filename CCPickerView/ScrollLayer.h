@@ -31,11 +31,12 @@
 @property (nonatomic, assign) int currentPage;
 @property (nonatomic, retain) NSMutableArray* arrayPages;
 @property (nonatomic, assign) CGSize touchSize;
-@property (nonatomic, assign) id <ScrollLayerDelegate> spinCallBackDelegate;
+@property (nonatomic, assign) id <ScrollLayerDelegate> delegate;
 -(void)makePages;
--(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger) page callBackDelegate:delegate;
+-(void)spin:(float)speed rate:(float)rate repeat:(NSInteger )repeat stopPage:(NSInteger)page;
 @end
 
 @protocol ScrollLayerDelegate <NSObject>
+-(void)onDoneSelecting:(ScrollLayer *)scrollLayer;
 -(void)onDoneSpinning:(ScrollLayer *)scrollLayer;
 @end
