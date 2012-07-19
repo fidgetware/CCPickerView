@@ -165,10 +165,8 @@
 	glEnable(GL_SCISSOR_TEST);
     
 	CGSize size = [[CCDirector sharedDirector] winSize];
-	CGRect scissorRect = CGRectMake( rect.origin.x * CC_CONTENT_SCALE_FACTOR(),
-                                    rect.origin.y* CC_CONTENT_SCALE_FACTOR(),
-                                    rect.size.width* CC_CONTENT_SCALE_FACTOR(),
-                                    (rect.size.height)* CC_CONTENT_SCALE_FACTOR() );
+    
+    CGRect scissorRect = rect;
     
 	// transform the clipping rectangle to adjust to the current screen
 	// orientation: the rectangle that has to be passed into glScissor is
@@ -205,6 +203,12 @@
 		}
 			break;
 	}
+    
+    // Original code scaled and then rotated.  You need to rotate then scale.
+	scissorRect = CGRectMake( scissorRect.origin.x * CC_CONTENT_SCALE_FACTOR(),
+                             scissorRect.origin.y* CC_CONTENT_SCALE_FACTOR(),
+                             scissorRect.size.width* CC_CONTENT_SCALE_FACTOR(),
+                             (scissorRect.size.height)* CC_CONTENT_SCALE_FACTOR() );
     
 	glScissor(scissorRect.origin.x, scissorRect.origin.y,
 			  scissorRect.size.width, scissorRect.size.height);
