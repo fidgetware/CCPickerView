@@ -205,16 +205,23 @@
 }
 
 - (CCNode *)pickerView:(CCPickerView *)pickerView nodeForRow:(NSInteger)row forComponent:(NSInteger)component reusingNode:(CCNode *)node {
-    
+
     CCSprite *temp = [CCSprite node];
+    GLubyte *buffer = malloc(sizeof(GLubyte)*4);
+    for (int i=0;i<4;i++) {buffer[i]=255;}
+    CGSize size = CGSizeMake(kComponentWidth, kComponentHeight);
+    CCTexture2D *tex = [[CCTexture2D alloc] initWithData:buffer pixelFormat:kCCTexture2DPixelFormat_RGBA8888 pixelsWide:1 pixelsHigh:1 contentSize:size];
+    [temp setTexture:tex];
+    free(buffer);
+
     temp.color = ccYELLOW;
     temp.textureRect = CGRectMake(0, 0, kComponentWidth, kComponentHeight);
-    
+
     NSString *rowString = [NSString stringWithFormat:@"%d", row];
     CCLabelBMFont *label = [CCLabelBMFont labelWithString:rowString fntFile:@"bitmapFont.fnt"];
     label.position = ccp(kComponentWidth/2, kComponentHeight/2-5);
     [temp addChild:label];
-    
+
     return temp;
 }
 

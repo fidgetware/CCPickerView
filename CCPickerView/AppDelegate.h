@@ -2,19 +2,23 @@
 //  AppDelegate.h
 //  CCPickerView
 //
-//  Created by Mick Lester on 5/16/12.
-//  Copyright fidgetware 2012. All rights reserved.
+//  Created by Mick Lester on 1/3/13.
+//  Copyright fidgetware 2013. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "cocos2d.h"
 
-@class RootViewController;
+@interface AppController : NSObject <UIApplicationDelegate, CCDirectorDelegate>
+{
+	UIWindow *window_;
+	UINavigationController *navController_;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
-	UIWindow			*window;
-	RootViewController	*viewController;
+	CCDirectorIOS	*director_;							// weak ref
 }
 
 @property (nonatomic, retain) UIWindow *window;
+@property (readonly) UINavigationController *navController;
+@property (readonly) CCDirectorIOS *director;
 
 @end

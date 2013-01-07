@@ -157,54 +157,14 @@
 
 //http://www.cocos2d-iphone.org/forum/topic/10270
 - (void) visit {
+
 	if (!self.visible)
 		return;
     
-	glPushMatrix();
-    
 	glEnable(GL_SCISSOR_TEST);
-    
-	CGSize size = [[CCDirector sharedDirector] winSize];
     
     CGRect scissorRect = rect;
     
-	// transform the clipping rectangle to adjust to the current screen
-	// orientation: the rectangle that has to be passed into glScissor is
-	// always based on the coordinate system as if the device was held with the
-	// home button at the bottom. the transformations account for different
-	// device orientations and adjust the clipping rectangle to what the user
-	// expects to happen.
-	ccDeviceOrientation orientation = [[CCDirector sharedDirector] deviceOrientation];
-	switch (orientation) {
-		case kCCDeviceOrientationPortrait:
-			break;
-		case kCCDeviceOrientationPortraitUpsideDown:
-			scissorRect.origin.x = size.width-scissorRect.size.width-scissorRect.origin.x;
-			scissorRect.origin.y = size.height-scissorRect.size.height-scissorRect.origin.y;
-			break;
-		case kCCDeviceOrientationLandscapeLeft:
-		{
-			float tmp = scissorRect.origin.x;
-			scissorRect.origin.x = scissorRect.origin.y;
-			scissorRect.origin.y = size.width-scissorRect.size.width-tmp;
-			tmp = scissorRect.size.width;
-			scissorRect.size.width = scissorRect.size.height;
-			scissorRect.size.height = tmp;
-		}
-			break;
-		case kCCDeviceOrientationLandscapeRight:
-		{
-			float tmp = scissorRect.origin.y;
-			scissorRect.origin.y = scissorRect.origin.x;
-			scissorRect.origin.x = size.height-scissorRect.size.height-tmp;
-			tmp = scissorRect.size.width;
-			scissorRect.size.width = scissorRect.size.height;
-			scissorRect.size.height = tmp;
-		}
-			break;
-	}
-    
-    // Original code scaled and then rotated.  You need to rotate then scale.
 	scissorRect = CGRectMake( scissorRect.origin.x * CC_CONTENT_SCALE_FACTOR(),
                              scissorRect.origin.y* CC_CONTENT_SCALE_FACTOR(),
                              scissorRect.size.width* CC_CONTENT_SCALE_FACTOR(),
@@ -216,7 +176,6 @@
 	[super visit];
     
 	glDisable(GL_SCISSOR_TEST);
-	glPopMatrix();
 }
 
 #pragma mark - ScrollLayerDelegate
