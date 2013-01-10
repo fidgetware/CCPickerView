@@ -136,6 +136,12 @@
 		00DA18F9169B2DAC000F8BCE /* CCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DA18F8169B2DAC000F8BCE /* CCPickerView.m */; };
 		00DA18FD169B2E17000F8BCE /* ScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DA18FC169B2DFE000F8BCE /* ScrollLayer.m */; };
 		00DA18FF169B3017000F8BCE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DA18FE169B3017000F8BCE /* Default-568h@2x.png */; };
+		00DBE1CF169E79950002B66E /* bitmapFont-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 00DBE1C9169E79950002B66E /* bitmapFont-hd.fnt */; };
+		00DBE1D0169E79950002B66E /* bitmapFont-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DBE1CA169E79950002B66E /* bitmapFont-hd.png */; };
+		00DBE1D1169E79950002B66E /* bitmapFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 00DBE1CB169E79950002B66E /* bitmapFont.fnt */; };
+		00DBE1D2169E79950002B66E /* bitmapFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DBE1CC169E79950002B66E /* bitmapFont.png */; };
+		00DBE1D3169E79950002B66E /* 3slots.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DBE1CD169E79950002B66E /* 3slots.png */; };
+		00DBE1D4169E79950002B66E /* 3slots-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 00DBE1CE169E79950002B66E /* 3slots-hd.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -406,6 +412,12 @@
 		00DA18FB169B2DFE000F8BCE /* ScrollLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollLayer.h; sourceTree = "<group>"; };
 		00DA18FC169B2DFE000F8BCE /* ScrollLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollLayer.m; sourceTree = "<group>"; };
 		00DA18FE169B3017000F8BCE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		00DBE1C9169E79950002B66E /* bitmapFont-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bitmapFont-hd.fnt"; sourceTree = "<group>"; };
+		00DBE1CA169E79950002B66E /* bitmapFont-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bitmapFont-hd.png"; sourceTree = "<group>"; };
+		00DBE1CB169E79950002B66E /* bitmapFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bitmapFont.fnt; sourceTree = "<group>"; };
+		00DBE1CC169E79950002B66E /* bitmapFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bitmapFont.png; sourceTree = "<group>"; };
+		00DBE1CD169E79950002B66E /* 3slots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3slots.png; sourceTree = "<group>"; };
+		00DBE1CE169E79950002B66E /* 3slots-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3slots-hd.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +497,12 @@
 		0082CEBF169B2A330066CAB7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00DBE1C9169E79950002B66E /* bitmapFont-hd.fnt */,
+				00DBE1CA169E79950002B66E /* bitmapFont-hd.png */,
+				00DBE1CB169E79950002B66E /* bitmapFont.fnt */,
+				00DBE1CC169E79950002B66E /* bitmapFont.png */,
+				00DBE1CD169E79950002B66E /* 3slots.png */,
+				00DBE1CE169E79950002B66E /* 3slots-hd.png */,
 				0082CEC0169B2A330066CAB7 /* Default.png */,
 				0082CEC2169B2A330066CAB7 /* Default-Landscape~ipad.png */,
 				0082CEC4169B2A330066CAB7 /* fps_images.png */,
@@ -909,6 +927,12 @@
 				0082CED8169B2A330066CAB7 /* iTunesArtwork in Resources */,
 				0082D016169B2A350066CAB7 /* ChangeLog in Resources */,
 				00DA18FF169B3017000F8BCE /* Default-568h@2x.png in Resources */,
+				00DBE1CF169E79950002B66E /* bitmapFont-hd.fnt in Resources */,
+				00DBE1D0169E79950002B66E /* bitmapFont-hd.png in Resources */,
+				00DBE1D1169E79950002B66E /* bitmapFont.fnt in Resources */,
+				00DBE1D2169E79950002B66E /* bitmapFont.png in Resources */,
+				00DBE1D3169E79950002B66E /* 3slots.png in Resources */,
+				00DBE1D4169E79950002B66E /* 3slots-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
