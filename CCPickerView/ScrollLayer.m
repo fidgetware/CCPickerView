@@ -183,10 +183,9 @@
     
     speed = 1.0/speed;
     
-	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * pageSize * 2.0));
-    
     // Move to end of the second set of pages for the first time.
-    CCFiniteTimeAction *firstMoveToPageEndAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];    
+	float diffY = fabs( (positionNow.y) - (-s.height /2 -s.height * pageSize * 2.0));
+    CCFiniteTimeAction *firstMoveToPageEndAction = [CCMoveTo actionWithDuration:(speed * diffY / s.height)  position:ccp(-s.width /2, -s.height/2 - s.height * pageSize * 2.0)];
     
     // Move to the begining of the second set of pages, the user will not see this action.
     CCFiniteTimeAction *moveToPageStartAction = [CCMoveTo actionWithDuration:0 position:ccp(-s.width /2, -s.height/2 - s.height * pageSize)];
