@@ -15,7 +15,6 @@
 @interface CCPickerView : CCLayer <ScrollLayerDelegate> {
     id <CCPickerViewDataSource> dataSource;
     id <CCPickerViewDelegate> delegate;
-    CGRect rect;
     BOOL repeatNodes;
 }
 @property (nonatomic, assign) id <CCPickerViewDataSource> dataSource;

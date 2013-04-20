@@ -36,8 +36,6 @@
     CCNode *overlayImage = [delegate overlayImage:self];
     [self addChild:overlayImage z:10];
     
-    rect = CGRectMake(self.position.x - size.width/2, self.position.y - size.height/2, size.width, size.height);
-    
     [self reloadAllComponents];    
 }
 
@@ -162,13 +160,17 @@
 		return;
     
 	glEnable(GL_SCISSOR_TEST);
+
+    CGSize size = self.contentSize;
+    CGPoint worldPoint = [self convertToWorldSpace:self.position];
+    CGRect rect = CGRectMake(worldPoint.x - self.position.x - size.width/2, worldPoint.y - self.position.y - size.height/2, size.width, size.height);
+
+    CGRect scissorRect;
     
-    CGRect scissorRect = rect;
-    
-	scissorRect = CGRectMake( scissorRect.origin.x * CC_CONTENT_SCALE_FACTOR(),
-                             scissorRect.origin.y* CC_CONTENT_SCALE_FACTOR(),
-                             scissorRect.size.width* CC_CONTENT_SCALE_FACTOR(),
-                             (scissorRect.size.height)* CC_CONTENT_SCALE_FACTOR() );
+	scissorRect = CGRectMake( rect.origin.x * CC_CONTENT_SCALE_FACTOR(),
+                             rect.origin.y* CC_CONTENT_SCALE_FACTOR(),
+                             rect.size.width* CC_CONTENT_SCALE_FACTOR(),
+                             (rect.size.height)* CC_CONTENT_SCALE_FACTOR() );
     
 	glScissor(scissorRect.origin.x, scissorRect.origin.y,
 			  scissorRect.size.width, scissorRect.size.height);
